@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form id ="delete">
+
+  <actiontype>delete</actiontype>
+  <title>Delete role</title>
+  <access>admin</access>
+
+  <database>
+    <table>hubrole</table>
+    <primarykey>id</primarykey>
+    <condition>1 = 1</condition>
+    <order>id</order>
+  </database>
+  <pageheader>
+    <title>Delete Role</title>
+  </pageheader>
+
+
+
+  <audit>
+    <table>HubAudit</table>
+    <enabled>yes</enabled>
+    <view>roleedit</view>
+  </audit>
+
+
+  <section id = "space_section">
+    <htmlobject type="space"/>  
+    <htmlobject type="space"/>
+  </section>
+
+  <section id="pk">
+
+    <class>card-panel</class>
+    <htmlobject id="pk" type="inputbox">
+      <mandatory>no</mandatory>
+      <enabled>no</enabled>
+      <datatype>varchar</datatype>
+      <defvalue>1</defvalue>
+      <dbfield>id</dbfield>
+      <cssclass>hide</cssclass>
+    </htmlobject>
+
+    <htmlobject type="space"/>
+  
+   
+    <htmlobject id="1" type="inputbox">
+      <label>Role</label>
+      <enabled>no</enabled>
+      <mandatory>yes</mandatory>
+      <defvalue>ROLE</defvalue>
+      <datatype>varchar</datatype>
+      <dbfield>role</dbfield>
+      <width>4</width>
+      <cssclass>offset-s4</cssclass>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+
+      <htmlobject type="space"/>
+
+    <htmlobject id="2" type="inputbox">
+      <label>Description</label>
+      <enabled>no</enabled>
+      <mandatory>no</mandatory>
+      <defvalue>Description</defvalue>
+      <datatype>varchar</datatype>
+      <dbfield>descr</dbfield>
+      <width>4</width>
+      <cssclass>offset-s4</cssclass>
+      <mandatory>no</mandatory>
+    </htmlobject>
+
+      <htmlobject type="space"/>
+
+  </section>
+
+  <section id="4">
+    <htmlobject id="16" type="button">
+      <action>delete</action>
+      <label>Delete</label>
+    </htmlobject>
+
+    <htmlobject id="17" type="button">
+      <action>cancel</action>
+      <label>Cancel</label>
+    </htmlobject>
+    
+  </section>
+</form>

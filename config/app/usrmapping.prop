@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<usermapping>
+  <table>HubUsr</table>
+  <mapping>
+    <user>
+      <dbfield>usr</dbfield>
+    </user>
+    <password>
+      <dbfield>pw</dbfield>
+    </password>
+    <department>
+      <dbfield>department</dbfield>
+    </department>
+    <create>
+      <dbfield>cancreate</dbfield>
+    </create>
+    <read>
+      <dbfield>canread</dbfield>
+    </read>
+    <update>
+      <dbfield>canupdate</dbfield>
+    </update>
+    <delete>
+      <dbfield>candelete</dbfield>
+    </delete>
+    <authorize>
+      <dbfield>canauthorize</dbfield>
+    </authorize>
+    <admin>
+      <dbfield>admin</dbfield>
+    </admin>
+  </mapping>
+</usermapping>

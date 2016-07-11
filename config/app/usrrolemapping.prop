@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<usermapping>
+  <table>HubUsrRole</table>
+  <mapping>
+    <user>
+      <dbfield>usr</dbfield>
+    </user>
+    <role>
+      <dbfield>role</dbfield>
+    </role>
+  </mapping>
+</usermapping>
+

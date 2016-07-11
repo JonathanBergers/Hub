@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form id="update">
+	<database>
+		<table>user</table>
+		<order>id</order>
+		<condition>1=1</condition>
+		<connection>conn</connection>
+	</database>
+	<actiontype>update</actiontype>
+	<access>admin</access>
+	<section id="0">
+		<htmlobject type="inputbox" id="0">
+			<width>2</width>
+			<cssclass>offset-s0</cssclass>
+			<enabled>no</enabled>
+			<dbfield>ID</dbfield>
+			<label>ID</label>
+		</htmlobject>
+	</section>
+	<section id="1">
+		<htmlobject type="inputbox" id="0">
+			<width>4</width>
+			<cssclass>offset-s0</cssclass>
+			<dbfield>usr</dbfield>
+			<label>User</label>
+		</htmlobject>
+		<htmlobject type="password" id="1">
+			<width>4</width>
+			<cssclass>offset-s0</cssclass>
+			<dbfield>##pw</dbfield>
+			<label>Password</label>
+		</htmlobject>
+	</section>
+	<section id="2">
+		<htmlobject type="checkbox" id="0">
+			<width>3</width>
+			<cssclass>offset-s0</cssclass>
+			<dbfield>canread</dbfield>
+			<label>Read</label>
+		</htmlobject>
+		<htmlobject type="space">
+			<width>1</width>
+		</htmlobject>
+		<htmlobject type="checkbox" id="1">
+			<width>3</width>
+			<cssclass>offset-s0</cssclass>
+			<dbfield>candelete</dbfield>
+			<label>Delete</label>
+		</htmlobject>
+		<htmlobject type="space">
+			<width>1</width>
+		</htmlobject>
+		<htmlobject type="checkbox" id="2">
+			<width>3</width>
+			<cssclass>offset-s0</cssclass>
+			<dbfield>canupdate</dbfield>
+			<label>Update</label>
+		</htmlobject>
+	</section>
+	<section id="3">
+		<htmlobject type="checkbox" id="0">
+			<width>3</width>
+			<cssclass>offset-s0</cssclass>
+			<dbfield>cancreate</dbfield>
+			<label>Create</label>
+		</htmlobject>
+		<htmlobject type="space">
+			<width>1</width>
+		</htmlobject>
+		<htmlobject type="checkbox" id="1">
+			<width>3</width>
+			<cssclass>offset-s0</cssclass>
+			<dbfield>canauthorize</dbfield>
+			<label>Authorize</label>
+		</htmlobject>
+		<htmlobject type="space">
+			<width>1</width>
+		</htmlobject>
+		<htmlobject type="checkbox" id="2">
+			<width>3</width>
+			<cssclass>offset-s0</cssclass>
+			<dbfield>admin</dbfield>
+			<label>Admin</label>
+		</htmlobject>
+	</section>
+	<section id="4">
+		<htmlobject type="button" id="0">
+			<width>0</width>
+			<cssclass>offset-s0</cssclass>
+			<action>insert</action>
+			<label>Save</label>
+		</htmlobject>
+		<htmlobject type="button" id="1">
+			<width>0</width>
+			<cssclass>offset-s0</cssclass>
+			<action>insert</action>
+			<label>Cancel</label>
+		</htmlobject>
+	</section>
+	<pageheader>
+		<title>user</title>
+	</pageheader>
+</form>

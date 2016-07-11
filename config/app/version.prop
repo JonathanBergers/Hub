@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rqm>
+  <version>1.0</version>
+  <author>Jonathan Bergers</author>
+  <copyright>Eggwisen</copyright>
+  <date>29/02/2016</date>
+  <!-- application settings-->
+  <errorlog>errorLog</errorlog>
+  <maxrows>500</maxrows>
+
+  <!-- includes -->
+  <encryption>Sh@k3sp3@r31</encryption>
+
+
+ 
+  <scripts>
+
+    
+    <script type ="css">
+      <include>style/materialize/css/materialize.min.css</include>
+    </script>
+    <script type ="javascript">
+      <include>style/materialize/js/materialize.min.js</include>
+    </script>
+    <!--<script type ="css">
+      <include>style/materialize/font/roboto/.css</include>
+    </script>-->
+    <script type ="css">
+      <include>https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css</include>
+    </script>
+    <script type ="css">
+      <include>http://fonts.googleapis.com/icon?family=Material+Icons</include>
+    </script>
+    <script type ="css">
+      <include>http://fonts.googleapis.com/css?family=Inconsolata</include>
+    </script>
+    
+
+      <script type ="javascript">
+      <include>javascript/parsley.min.js</include>
+    </script>
+      <script type ="javascript">
+      <include>javascript/validation.js</include>
+    </script>
+  
+  </scripts>
+
+   
+
+
+
+</rqm>

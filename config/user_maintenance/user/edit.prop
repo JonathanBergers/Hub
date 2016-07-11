@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form id ="edit">
+
+  <actiontype>edit</actiontype>
+  <title>Edit user</title>
+  <access>admin</access>
+
+  <database>
+    <table>hubusr</table>
+    <primarykey>ID</primarykey>
+    <condition>1 = 1</condition>
+    <order>id</order>
+  </database>
+
+  <audit>
+    <table>HubAudit</table>
+    <enabled>yes</enabled>
+    <view>usredit</view>
+  </audit>
+
+  <pageheader>
+    <title>Edit User</title>
+  </pageheader>
+
+
+
+
+<section id = "space_section">
+    <htmlobject type="space"/>  
+    <htmlobject type="space"/>
+
+
+  </section>
+
+  <section id="1">
+    <class>card-panel</class>
+
+
+    <htmlobject id="pk" type="inputbox">
+      <label>ID</label>
+      <mandatory>no</mandatory>
+      <enabled>no</enabled>
+      <datatype>varchar</datatype>
+      <defvalue>1</defvalue>
+      <dbfield>id</dbfield>
+      <cssclass>hide</cssclass>
+    </htmlobject>
+
+    <htmlobject type="space"/>
+    
+    <htmlobject id="1" type="inputbox">
+      <label>Username</label>
+      <mandatory>yes</mandatory>
+      <enabled>yes</enabled>
+      <datatype>varchar</datatype>
+      <defvalue>usr</defvalue>
+      <dbfield>usr</dbfield>
+      <width>4</width>
+      <cssclass>offset-s4</cssclass>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+
+     <htmlobject type="space"/>
+
+    <htmlobject id="2" type="password">
+      <label>Password</label>
+      <mandatory>no</mandatory>
+      <datatype>varchar</datatype>
+      <defvalue>pw</defvalue>
+      <dbfield>##pw</dbfield>
+      <width>4</width>
+      <cssclass>offset-s4</cssclass>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+ 
+
+    <htmlobject type="space"/>
+
+     <htmlobject id="3" type="inputbox">
+      <label>Department</label>
+      <mandatory>no</mandatory>
+      <dbfield>department</dbfield>
+      <width>4</width>
+      <cssclass>offset-s4</cssclass>
+    </htmlobject>
+
+ 
+     <htmlobject type="space"/>
+     <htmlobject type="space"/>
+
+
+    <htmlobject id="8" type="checkbox">
+      <label>Read</label>
+      <defvalue>0</defvalue>
+      <dbfield>canread</dbfield>
+      <width>2</width>
+      <cssclass>offset-s3</cssclass>
+    </htmlobject>
+   
+    <htmlobject id="9" type="checkbox">
+      <label>Delete</label>
+      <mandatory>no</mandatory>
+      <defvalue>0</defvalue>
+      <dbfield>candelete</dbfield>
+      <width>2</width>
+    </htmlobject>
+    
+    <htmlobject id="10" type="checkbox">
+      <label>Update</label>
+      <mandatory>no</mandatory>
+      <defvalue>0</defvalue>
+      <dbfield>canupdate</dbfield>
+      <width>2</width>
+    </htmlobject>
+
+    <htmlobject type="space"/>
+    
+
+    <htmlobject id="11" type="checkbox">
+      <label>Create</label>
+      <mandatory>no</mandatory>
+      <defvalue>0</defvalue>
+      <dbfield>cancreate</dbfield>
+      <width>2</width>
+      <cssclass>offset-s3</cssclass>
+    </htmlobject>
+    
+
+    <htmlobject id="12" type="checkbox">
+      <label>Authorize</label>
+      <mandatory>no</mandatory>
+      <dbfield>canauthorize</dbfield>
+      <defvalue>0</defvalue>
+      <width>2</width>
+    </htmlobject>
+    
+    
+  
+    <htmlobject id="13" type="checkbox">
+      <label>Admin</label>
+      <mandatory>no</mandatory>
+      <defvalue>0</defvalue>
+      <dbfield>admin</dbfield>
+      <width>2</width>
+    </htmlobject>
+
+     <htmlobject type="space"/>
+  </section>
+
+  <section id="4">
+    <htmlobject id="16" type="button">
+      <action>update</action>
+      <label>Save</label>
+    </htmlobject>
+    <htmlobject id="17" type="button">
+      <action>cancel</action>
+      <label>Cancel</label>
+    </htmlobject>
+    <htmlobject id="18" type="button">
+      <action>copy</action>
+      <label>Copy</label>
+    </htmlobject>
+
+
+  </section>
+</form>

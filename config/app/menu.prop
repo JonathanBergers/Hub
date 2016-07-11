@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu id="menu">
+  <menuitem level ="1">
+    <menutext>Login</menutext>
+    <module>login</module>
+    <security>application</security>
+  </menuitem>
+  <menuitem level ="1">
+    <menutext>Home</menutext>
+    <module>home</module>
+    <type>startpage</type>
+    <security>application</security>
+  </menuitem>
+  
+</menu>

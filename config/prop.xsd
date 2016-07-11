@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="form">
+
+  
+    
+    <xs:complexType>
+      <xs:sequence>
+    
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="actiontype" type="xs:string" />
+          <xs:element name="title" type="xs:string" />
+          <xs:element name="access" type="xs:string" />
+
+
+
+          
+     
+          <xs:element name="database">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" name="connection" type="xs:string" />
+                <xs:element name="table" type="xs:string" />
+                <xs:element name="primarykey" type="xs:string" />
+                <xs:element name="condition" type="xs:string" />
+                <xs:element name="order" type="xs:string" />
+                
+              </xs:sequence>
+            </xs:complexType>
+            
+            
+          </xs:element>
+
+          <xs:element   maxOccurs="unbounded" name="pageheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" name="title" type="xs:string" />
+    
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="menuItem">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element  name="menutext" type="xs:string" />
+                      <xs:element name="module" type="xs:string" />
+                      <xs:element minOccurs="0" name="security" type="xs:string" />
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+
+              </xs:sequence>
+            </xs:complexType>
+
+
+          </xs:element>
+
+     
+
+
+            <xs:element maxOccurs="unbounded" name="section">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element  minOccurs="0"  name="class" type="xs:string" />
+                <xs:element  minOccurs="0"  name="container" type="xs:string" />
+                
+                <xs:element maxOccurs="unbounded" name="htmlobject">
+                  <xs:complexType>
+                    <xs:sequence minOccurs="0">
+                      <xs:choice maxOccurs="unbounded">
+                        
+                        <xs:element  minOccurs="0"  name="length" type="xs:string" />
+                        <xs:element name="icon" type="xs:string" />
+                        <xs:element name="location" type="xs:string" />
+                        <xs:element name="action" type="xs:string" />
+                        <xs:element name="label" type="xs:string" />
+                        <xs:element name="enabled" type="xs:string" />
+                        <xs:element name="mandatory" type="xs:string" />
+                        <xs:element name="dbfield" type="xs:string" />
+                        <xs:element name="list" type="xs:string" />
+                        <xs:element name="target" type="xs:string" />
+                        <xs:element name="cssclass" type="xs:string" />
+                        <xs:element name="width" type="xs:unsignedShort" />
+                        <xs:element name="taborder" type="xs:unsignedByte" />
+                        <xs:element name="rows" type="xs:unsignedByte" />
+                        <xs:element name="reload" type="xs:string" />
+                        <xs:element name="headers">
+                          <xs:complexType mixed="true">
+                            <xs:sequence minOccurs="0">
+                              <xs:element maxOccurs="unbounded" name="header">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element name="name" type="xs:string" />
+                                  </xs:sequence>
+                                  <xs:attribute name="id" type="xs:unsignedByte" use="required" />
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="columns">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element maxOccurs="unbounded" name="column">
+                                <xs:complexType>
+                                  <xs:choice maxOccurs="unbounded">
+                                    <xs:element name="dbfield" type="xs:string" />
+                                    <xs:element minOccurs="0" name="datatype" type="xs:string" />
+                                    <xs:element minOccurs="0" name="width" type="xs:unsignedShort" />
+                                    <xs:element minOccurs="0" name="height" type="xs:unsignedShort" />
+                                    <xs:element minOccurs="0" name="cssclass" type="xs:string" />
+                                    <xs:element minOccurs="0" name="list" type="xs:string" />
+                                  </xs:choice>
+                                  <xs:attribute name="id" type="xs:unsignedByte" use="required" />
+                                  <xs:attribute name="type" type="xs:string" use="optional" />
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="datatype" type="xs:string" />
+                        <xs:element name="defvalue" type="xs:string" />
+                        <xs:element name="url" type="xs:string" />
+                        <xs:element name="edit" type="xs:string" />
+                        <xs:element name="delete" type="xs:string" />
+                        <xs:element name="check" type="xs:string" />
+                        <xs:element name="columncheck" type="xs:string" />
+                        <xs:element name="direction" type="xs:string" />
+                        <xs:element name="loaddata" type="xs:string" />
+                        <xs:element name="sproc" type="xs:string" />
+                        <xs:element name="filepath" type="xs:string" />
+                        <xs:element name="delimeter" type="xs:string" />
+                        <xs:element name="height" type="xs:unsignedShort" />
+                        <xs:element name="rowheight" type="xs:unsignedShort" />
+                        <xs:element name="display" type="xs:string" />
+                        <xs:element name="dbtable" type="xs:string" />
+                        <xs:element name="dbkey" type="xs:string" />
+                        <xs:element name="navigate" type="xs:string" />
+                        <xs:element name="message" type="xs:string" />
+                      </xs:choice>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:string" use="optional" />
+                    <xs:attribute name="type" type="xs:string" use="required" />
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+              <xs:attribute name="id" type="xs:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="audit">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="table" type="xs:string" />
+                <xs:element name="enabled" type="xs:string" />
+                <xs:element name="view" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

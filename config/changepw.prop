@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form id ="edit">
+  <actiontype>edit</actiontype>
+  <title>Change password</title>
+  <access>application</access>
+  <database>
+    <table>HubUsr</table>
+    <primarykey>'nofilter'</primarykey>
+    <condition>usr = @user</condition>
+    <order>id</order>
+  </database>
+
+  <audit>
+    <table>log_PasswordChange</table>
+    <enabled>yes</enabled>
+    <view></view>
+  </audit>
+  
+  <section id="1">
+    <htmlobject id="pk" type="inputbox">
+      <label>ID</label>
+      <enabled>no</enabled>
+      <mandatory>no</mandatory>
+      <datatype>integer</datatype>
+      <dbfield>ID</dbfield>
+      <cssclass>input</cssclass>
+      <width>50</width>
+      <taborder>0</taborder>
+    </htmlobject>
+    <htmlobject type ="break" />
+    <htmlobject id="1" type="inputbox">
+      <label>User</label>
+      <enabled>no</enabled>
+      <mandatory>no</mandatory>
+      <datatype>varchar</datatype>
+      <dbfield>usr</dbfield>
+      <cssclass>input</cssclass>
+      <width>200</width>
+      <taborder>1</taborder>
+    </htmlobject>
+    <htmlobject type ="break" />
+    <htmlobject id="2" type="inputbox">
+      <label>Password</label>
+      <enabled>yes</enabled>
+      <mandatory>no</mandatory>
+      <datatype>varchar</datatype>
+      <dbfield>##pw</dbfield>
+      <cssclass>input</cssclass>
+      <width>200</width>
+      <taborder>2</taborder>
+    </htmlobject>
+    <htmlobject type ="break" />
+    <htmlobject id="4" type="inputbox">
+      <label>Again</label>
+      <enabled>no</enabled>
+      <mandatory>no</mandatory>
+      <datatype>varchar</datatype>
+      <dbfield></dbfield>
+      <cssclass>input</cssclass>
+      <width>200</width>
+      <taborder>3</taborder>
+    </htmlobject>      
+  </section>
+  <section id="4">
+    <htmlobject id="16" type="button">
+      <action>update</action>
+      <enabled>yes</enabled>
+      <label>Save</label>
+      <cssclass>button</cssclass>
+      <width>80</width>
+      <taborder>16</taborder>
+    </htmlobject>
+    <htmlobject id="17" type="button">
+      <action>cancel</action>
+      <enabled>yes</enabled>
+      <label>Cancel</label>
+      <cssclass>button</cssclass>
+      <width>80</width>
+      <taborder>17</taborder>
+    </htmlobject>
+  </section>
+</form>

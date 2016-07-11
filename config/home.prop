@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form id ="home">
+  <actiontype>home</actiontype>
+  <access>application</access>
+
+  <pageheader>
+  	
+  	<title>HubWise Training Solutions Inc.</title>
+
+  </pageheader>
+
+  <section id="1">
+  	<class>valign-wrapper</class>
+    <htmlobject id="6" type="literal">
+      <label>
+               <![CDATA[<img class="valign" src="images/Home.jpg" alt="HubWise";/>]]>
+      </label>
+      <width>12</width>
+    </htmlobject>
+  </section>
+
+
+   <section id="3">
+
+    <htmlobject id="8" type="literal">
+      <label>
+        <![CDATA[<p>Developed by Eggwise</p>]]>
+      </label>
+    </htmlobject>
+  </section>
+</form>

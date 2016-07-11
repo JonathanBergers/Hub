@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form id ="edit">
+  <actiontype>edit</actiontype>
+  <title>Change role assignment</title>
+  <access>admin</access>
+
+  <database>
+    <table>hubusrrole</table>
+    <primarykey>id</primarykey>
+    <condition>1 = 1</condition>
+    <order>id</order>
+  </database>
+
+  <audit>
+    <table>HubAudit</table>
+    <enabled>yes</enabled>
+    <view>usrroleedit</view>
+  </audit>
+
+
+
+
+<section id = "space_section">
+    <htmlobject type="space"/>  
+    <htmlobject type="space"/>
+
+
+  </section>
+
+
+
+  <section id="1">
+    <class>card-panel</class>
+ 
+    <htmlobject id="pk" type="inputbox">
+      <label>ID</label>
+      <enabled>no</enabled>
+      <mandatory>no</mandatory>
+      <datatype>integer</datatype>
+      <defvalue>1</defvalue>
+      <dbfield>ID</dbfield>
+      <cssclass>hide</cssclass>
+    </htmlobject>
+
+    <htmlobject type="space"/>
+  
+    <htmlobject id="1" type="dropdown">
+      <label>User</label>
+      <enabled>yes</enabled>
+      <mandatory>no</mandatory>
+      <datatype>varchar</datatype>
+      <list>select usr from hubusr order by usr</list>
+      <dbfield>usr</dbfield>
+      <width>4</width>
+      <cssclass>offset-s4</cssclass>
+    </htmlobject>
+    
+     <htmlobject type="space"/>
+    
+    <htmlobject id="2" type="dropdown">
+      <label>Role</label>
+      <enabled>yes</enabled>
+      <mandatory>no</mandatory>
+      <datatype>varchar</datatype>
+      <list>select role from hubrole order by role</list>
+      <dbfield>role</dbfield>
+      <width>4</width>
+      <cssclass>offset-s4</cssclass>
+    </htmlobject>
+  </section>
+  
+  <section id="4">
+    <htmlobject id="16" type="button">
+      <action>update</action>
+      <label>Save</label>
+    </htmlobject>
+
+    <htmlobject id="17" type="button">
+      <action>cancel</action>
+      <label>Cancel</label>
+    </htmlobject>
+
+  </section>
+</form>

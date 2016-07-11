@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Menu items are stored in the application object -->
+<!-- Changing the items require a reload of the app  -->
+<menu id="menu">
+
+  <!--  home pages -->
+
+  <menuitem>
+    <menutext>Home</menutext>
+    <module>home</module>
+    <type>startpage</type>
+    <security>application</security>
+  </menuitem>
+
+
+
+  <!-- User section -->
+
+  <menuitem level ="1">
+    <menutext>User maintenance</menutext>
+    <security>admin</security>
+
+    <menuitem>
+      <menutext>Users</menutext>
+      <module>/user_maintenance/user/search</module>
+    </menuitem>
+
+    <menuitem>
+      <menutext>Roles</menutext>
+      <module>/user_maintenance/role/search</module>
+    </menuitem>
+
+    <menuitem>
+      <menutext>User Roles</menutext>
+      <module>/user_maintenance/user_role/search</module>
+    </menuitem>
+
+  </menuitem>
+
+  
+
+<!--  Test-->
+
+  <menuitem level ="1">
+    <menutext>Form test</menutext>
+    <security>admin</security>
+
+    <menuitem>
+      <menutext>Test</menutext>
+      <module>/user/user_search</module>
+    </menuitem>
+
+
+    <menuitem>
+      <menutext>Test create</menutext>
+      <module>/user/user_create</module>
+    </menuitem>
+
+  </menuitem>
+
+
+
+
+
+</menu>

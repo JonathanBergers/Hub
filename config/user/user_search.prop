@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form id="search">
+  <database>
+    <table>test3</table>
+    <order>id</order>
+    <condition>1=1</condition>
+    <connection>test</connection>
+    <primarykey>id</primarykey>
+  </database>
+  <actiontype>search</actiontype>
+  <access>admin</access>
+  <section id="0">
+    <htmlobject type="inputbox" id="0">
+      <width>2</width>
+      <cssclass>offset-s0</cssclass>
+      <enabled>no</enabled>
+      <dbfield>ID</dbfield>
+      <label>ID</label>
+    </htmlobject>
+
+
+
+  </section>
+  <section id="1">
+    <htmlobject type="inputbox" id="0">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>name</dbfield>
+      <label>Name</label>
+    </htmlobject>
+    <htmlobject type="inputbox" id="1">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>amount</dbfield>
+      <label>Amount</label>
+    </htmlobject>
+  </section>
+
+  <section id="4">
+    <htmlobject type="button" id="0">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>insert</action>
+      <label>Save</label>
+    </htmlobject>
+    <htmlobject type="button" id="1">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>insert</action>
+      <label>Cancel</label>
+    </htmlobject>
+
+
+    <htmlobject type="button" id="3">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>export_excel</action>
+      <label>Export excel test</label>
+    </htmlobject>
+
+
+
+    <htmlobject type="button" id="2">
+      <width>0</width>
+      <enabled>yes</enabled>
+      <cssclass>offset-s0</cssclass>
+      <action>update</action>
+      <label>Update</label>
+    </htmlobject>
+
+  </section>
+  <section id="table_section">
+
+    <class>section_table</class>
+    <htmlobject type="table" id="table">
+      <update>/user/user_update</update>
+      <rows>10</rows>
+      <dbkey>id</dbkey>
+      <dbtable>test3</dbtable>
+      <columns>
+        <column id="0">
+          <dbfield>ID</dbfield>
+        </column>
+        <column id="1">
+          <dbfield>name</dbfield>
+        </column>
+        <column id="2" type="inputbox-number">
+          <dbfield>amount</dbfield>
+        </column>
+
+
+      </columns>
+      <delete>/user/user_delete</delete>
+      <headers>
+        <header id="0">
+          <name>ID</name>
+        </header>
+        <header id="1">
+          <name>Name</name>
+        </header>
+        <header id="2">
+          <name>Amount</name>
+        </header>
+      </headers>
+      <direction>asc</direction>
+    </htmlobject>
+  </section>
+  <pageheader>
+    <title>test</title>
+  </pageheader>
+</form>

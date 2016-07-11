@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form id ="edit">
+  
+  <actiontype>search</actiontype>
+  <access>admin</access>
+
+  
+  <database>
+    <table>hubrole</table>
+    <primarykey>id</primarykey>
+    <condition>1 = 1</condition>
+    <order>id</order>
+  </database>
+
+  <pageheader>
+    <title>Role</title>
+  </pageheader>
+
+    <section id="space_section">
+    <htmlobject type="space"/>
+  </section>
+
+
+  <section id="1">
+    <class>card-panel</class>
+
+    <htmlobject id="1" type="inputbox">
+      <icon>search</icon>
+      <label>Find by role</label>
+      <mandatory>no</mandatory>
+      <target>search</target>   
+      <dbfield>role</dbfield>
+      <width>6</width>
+    </htmlobject>
+    <htmlobject type="space"/>
+  </section>
+
+
+  <section id="2">
+    <htmlobject id="16" type="button">
+      <action>search</action>
+      <label>Search</label>
+      <width>2</width>
+    </htmlobject>
+  </section>
+
+  
+
+
+    <section id="5">
+    <htmlobject id="21" type="link">
+      <label>Add new role</label>
+      <url><![CDATA[index.aspx?page=/user_maintenance/role/create&filter=nofilter]]></url>
+      <width>6</width>
+      <location>right</location>
+    </htmlobject>
+  </section>
+  <section id ="6">
+    <htmlobject id="18" type ="table">
+      <label>List</label>
+      <enabled>no</enabled>
+      <edit>/user_maintenance/role/edit</edit>
+      <delete>/user_maintenance/role/delete</delete>
+	  <direction>asc</direction>
+      <rows>10</rows>
+      <headers>
+        <header id="1">
+          <name>ID</name>
+        </header>
+        <header id="2">
+          <name>Role</name>
+        </header>
+        <header id="3">
+        <name>Description</name>
+        </header>
+      </headers>
+      <columns>
+        <column id="1">
+          <dbfield>id</dbfield>
+        </column>
+        <column id="2">
+          <dbfield>role</dbfield>
+        </column>
+        <column id="3">
+          <dbfield>descr</dbfield>
+        </column>
+      </columns>
+    </htmlobject>
+  </section>
+</form>

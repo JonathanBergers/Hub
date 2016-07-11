@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form id="create">
+  <database>
+    <table>hubusr</table>
+    <order>id</order>
+    <condition>1=1</condition>
+    <connection>DBConnection</connection>
+    <primarykey>id</primarykey>
+  </database>
+  <actiontype>create</actiontype>
+  <access>admin</access>
+
+  <section id="1">
+    <htmlobject type="inputbox" id="0">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>usr</dbfield>
+      <label>User</label>
+    </htmlobject>
+
+
+    <htmlobject type="inputbox" id="asd">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd1">
+      <width>4</width>
+      
+      <list>[1: ,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+    <htmlobject type="inputbox" id="asd2">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd3">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="inputbox" id="asd4">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd5">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+
+
+    <htmlobject type="password" id="1">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>##pw</dbfield>
+      <label>Password</label>
+
+    </htmlobject>
+  </section>
+
+
+
+  <section id="1123a12a3">
+    <htmlobject type="inputbox" id="0">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>usr</dbfield>
+      <label>User</label>
+    </htmlobject>
+
+
+    <htmlobject type="inputbox" id="asd">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd1">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+    <htmlobject type="inputbox" id="asd2">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd3">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="inputbox" id="asd4">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd5">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+
+
+    <htmlobject type="password" id="1">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>##pw</dbfield>
+      <label>Password</label>
+
+    </htmlobject>
+  </section>
+
+
+
+  <section id="1a12">
+    <htmlobject type="inputbox" id="0">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>usr</dbfield>
+      <label>User</label>
+    </htmlobject>
+
+
+    <htmlobject type="inputbox" id="asd">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd1">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+    <htmlobject type="inputbox" id="asd2">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd3">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="inputbox" id="asd4">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd5">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+
+
+    <htmlobject type="password" id="1">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>##pw</dbfield>
+      <label>Password</label>
+
+    </htmlobject>
+  </section>
+
+
+
+  <section id="123a123">
+    <htmlobject type="inputbox" id="0">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>usr</dbfield>
+      <label>User</label>
+    </htmlobject>
+
+
+    <htmlobject type="email" id="asd">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd1">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+    <htmlobject type="inputbox" id="asd2">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd3">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="inputbox" id="asd4">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd5">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+
+
+    <htmlobject type="date" id="1">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>##pw</dbfield>
+      <label>Password</label>
+
+    </htmlobject>
+  </section>
+
+
+  <section id="1123123as123">
+    <htmlobject type="email" id="0">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>usr</dbfield>
+      <label>User</label>
+    </htmlobject>
+
+
+    <htmlobject type="inputbox" id="asd">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd1">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+    <htmlobject type="email" id="asd2">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd3">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="inputbox" id="asd4">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <mandatory>yes</mandatory>
+      <label>User</label>
+    </htmlobject>
+    <htmlobject type="dropdown" id="asd5">
+      <width>4</width>
+      <list>[1,2,3,4]</list>
+      <cssclass>offset-s0</cssclass>
+      <label>User</label>
+      <mandatory>yes</mandatory>
+    </htmlobject>
+
+
+    <htmlobject type="password" id="1">
+      <width>4</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>##pw</dbfield>
+      <label>Password</label>
+
+    </htmlobject>
+  </section>
+  <section id="2">
+    <htmlobject type="checkbox" id="0">
+      <width>3</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>canread</dbfield>
+      <label>Read</label>
+    </htmlobject>
+    <htmlobject type="space">
+      <width>1</width>
+    </htmlobject>
+    <htmlobject type="checkbox" id="1">
+      <width>3</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>candelete</dbfield>
+      <label>Delete</label>
+    </htmlobject>
+    <htmlobject type="space">
+      <width>1</width>
+    </htmlobject>
+    <htmlobject type="checkbox" id="2">
+      <width>3</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>canupdate</dbfield>
+      <label>Update</label>
+    </htmlobject>
+  </section>
+  <section id="3">
+    <htmlobject type="checkbox" id="0">
+      <width>3</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>cancreate</dbfield>
+      <label>Create</label>
+    </htmlobject>
+    <htmlobject type="space">
+      <width>1</width>
+    </htmlobject>
+    <htmlobject type="checkbox" id="1">
+      <width>3</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>canauthorize</dbfield>
+      <label>Authorize</label>
+    </htmlobject>
+    <htmlobject type="space">
+      <width>1</width>
+    </htmlobject>
+    <htmlobject type="checkbox" id="2">
+      <width>3</width>
+      <cssclass>offset-s0</cssclass>
+      <dbfield>admin</dbfield>
+      <label>Admin</label>
+    </htmlobject>
+  </section>
+  <section id="4">
+    <htmlobject type="button" id="0">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>insert</action>
+      <label>Save</label>
+    </htmlobject>
+    <htmlobject type="button" id="1">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>insert</action>
+      <label>Cancel</label>
+    </htmlobject>
+  </section>
+  <pageheader>
+    <title>user</title>
+  </pageheader>
+</form>

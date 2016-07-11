@@ -1,0 +1,21 @@
+﻿
+  .table_wrapper {
+     width: auto;
+     overflow-x:scroll;
+     white-space: nowrap;
+  }
+
+
+  .section {
+      padding-left: 100px;  
+   
+  }
+
+
+
+
+ .checkbox {
+
+  border: none
+
+}

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form id ="user">
+
+  <actiontype>search</actiontype>
+  <access>admin</access>
+
+
+  <database>
+    <table>hubusr</table>
+    <primarykey>id</primarykey>
+    <condition>1 = 1</condition>
+    <order>id</order>
+  </database>
+
+
+  <pageheader>
+    <title>Users</title>
+  </pageheader>
+
+  <section id="space_section">
+    <htmlobject type="space"/>
+  </section>
+
+
+  <section id="1">
+    <class>card</class>
+
+    <htmlobject id="1" type="inputbox">
+      <icon>search</icon>
+      <label>Find by username</label>
+      <mandatory>no</mandatory>
+      <target>search</target>
+      <dbfield>usr</dbfield>
+      <width>6</width>
+
+    </htmlobject>
+
+<!--    <htmlobject id="1231" type="dropdown">-->
+<!--      <mandatory>no</mandatory>-->
+<!--      <list>[AND, OR]</list>-->
+<!--      <target>search</target>-->
+<!--      ~1~      <dbfield>usr</dbfield>@1@-->
+<!--      <width>1</width>-->
+<!--    </htmlobject>-->
+<!---->
+<!---->
+<!--    <htmlobject id="112311" type="number">-->
+<!--      <icon>search</icon>-->
+<!--      <label>canread</label>-->
+<!--      <mandatory>no</mandatory>-->
+<!--      <target>search</target>-->
+<!--      <dbfield>canread</dbfield>-->
+<!--      <defValue>0</defValue>-->
+<!--      <width>3</width>-->
+<!--    </htmlobject>-->
+
+
+    <htmlobject type="space"/>
+  </section>
+
+
+  <section id="2">
+    <htmlobject id="16" type="button">
+      <action>search</action>
+      <label>Search</label>
+      <width>2</width>
+    </htmlobject>
+  </section>
+
+
+  <section id="5">
+    <htmlobject id="21" type="link">
+      <location>right</location>
+      <cssclass>link</cssclass>
+      <url><![CDATA[index.aspx?page=/user_maintenance/user/create&filter=nofilter]]></url>
+    </htmlobject>
+  </section>
+
+
+
+
+  <section id ="6">
+    <container>no</container>
+    <htmlobject id="12" type ="table">
+  
+      <width>2000</width>
+      <edit>/user_maintenance/user/edit</edit>
+      <direction>asc</direction>
+      <delete>/user_maintenance/user/delete</delete>
+      <rows>10</rows>
+      <headers>
+        <header id="1">
+          <name>ID</name>
+        </header>
+        <header id="2">
+          <name>User</name>
+        </header>
+        <header id="3">
+          <name>Password</name>
+        </header>
+      </headers>
+      <columns>
+        <column id="1">
+          <dbfield>id</dbfield>
+        </column>
+        <column id="2">
+          <dbfield>usr</dbfield>
+
+        </column>
+        <column id="3" type="password">
+          <dbfield>##pw</dbfield>
+        </column>
+      </columns>
+    </htmlobject>
+  </section>
+
+</form>

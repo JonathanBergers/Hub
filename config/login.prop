@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form id ="home">
+
+
+  <pageheader>
+    <title></title>
+  </pageheader>
+  
+  
+  <actiontype>login</actiontype>
+  <access>application</access>
+  
+    <audit>
+    <table>HubAccess</table>
+    <enabled>yes</enabled>
+    <view>edit</view>
+  </audit>
+  
+
+  <section id="1">
+    
+    <htmlobject type="space"/>
+    <htmlobject type="space"/>
+    <htmlobject type="space"/>
+    <htmlobject type="space"/>
+    <htmlobject type="space"/>
+  
+
+    <htmlobject  type="literal">
+      <label><![CDATA[<div class="offset-s5 col s4"><h2 class="valign">Login</h2></div>]]></label>
+    </htmlobject>
+
+  </section>
+  
+
+  <section id="2">
+
+    <class>card</class>
+
+    <htmlobject type="space"/>
+    <htmlobject type="space"/>
+      
+
+
+    <htmlobject id="1" type="inputbox">
+      <label>Username</label>
+      <enabled>yes</enabled>
+      <cssclass>offset-s4</cssclass>
+      <defvalue></defvalue>
+      <datatype>varchar20</datatype>
+      <mandatory>yes</mandatory>
+      <width>4</width>
+    </htmlobject>
+
+
+
+   
+
+
+    <htmlobject type="space"/>
+
+  
+    <htmlobject id="2" type="password">
+      <label>Password</label>
+      <enabled>yes</enabled>
+      <width>4</width>
+      <cssclass>offset-s4</cssclass>
+      <mandatory>yes</mandatory>
+      <label>Password</label>
+    </htmlobject>
+
+    <htmlobject type="space"/>
+    <htmlobject type="space"/>
+
+ 
+
+
+    <htmlobject id="16" type="button">
+      <action>login</action>
+      <enabled>yes</enabled>
+      <label>Login</label>
+      <cssclass>offset-s5</cssclass>
+      <width>2</width>
+      <taborder>16</taborder>
+    </htmlobject>
+
+  </section>
+  
+
+</form>
