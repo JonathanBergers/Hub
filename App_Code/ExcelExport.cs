@@ -24,8 +24,8 @@ namespace EggwiseLib
 
             try
             {
-                var data = ExportFactory.ExportDataFromDataTable(table, ExportToFormat.Excel2007);
-                File.WriteAllBytes(path + "/test.xlsx", data);
+                var data = ExportFactory.ExportDataFromDataTable(table, ExportToFormat.PDFiTextSharp4);
+                File.WriteAllBytes(path + "/test.pdf", data);
             }
             catch (Exception e)
             {

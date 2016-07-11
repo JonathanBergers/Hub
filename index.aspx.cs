@@ -370,7 +370,14 @@ public partial class index : BasePage  //System.Web.UI.Page
                     // security
                     bool enabled = false;
 
-                    if (htmlobject.Enabled.ToLower() == "yes" && htmlobject.HtmlType == "button")
+
+                    if (htmlobject.HtmlType != "button")
+                    {
+                        continue;
+                    }
+
+
+                    if (htmlobject.Enabled.ToLower() == "yes")
                     {
                         if (htmlobject.Action == "delete" && SessionHandler.Usr.Delete)
                         {
@@ -397,10 +404,46 @@ public partial class index : BasePage  //System.Web.UI.Page
 
                     }
 
+                    
+                    // upload button separate eventhandler
+                    if (htmlobject.Action == "upload" & enabled)
+                    {
+                        HtmlAnchor linkbutton = new HtmlAnchor();
+                        linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
+                        linkbutton.InnerHtml = htmlobject.Label;
+                        linkbutton.Name = htmlobject.Sproc + "&" + htmlobject.Reload;
+                        linkbutton.ServerClick += new EventHandler(Btn_Click_Upload);
+                    }
+
+                    // execute button separate eventhandler
+                    if (htmlobject.Action == "execute" & enabled)
+                    {
+                        HtmlAnchor linkbutton = new HtmlAnchor();
+                        linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
+                        linkbutton.InnerHtml = htmlobject.Label;
+                        linkbutton.Name = htmlobject.Sproc + "&" + htmlobject.Reload + "&" + htmlobject.Message;
+                        linkbutton.ServerClick += new EventHandler(Btn_Click_Execute);
+                    }
+
+                    // browse button seperate event handler ?
 
 
-                    // all buttons except execute and upload and browse
-                    if (htmlobject.HtmlType == "button" && htmlobject.Action != "execute" && enabled && htmlobject.Action != "browse" && htmlobject.Action != "upload")
+
+                    // export button separate eventhandler
+//                    if (htmlobject.Action == "export_excel" & enabled)
+//                    {
+//                        HtmlAnchor linkbutton = new HtmlAnchor();
+//                        linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
+//                        linkbutton.InnerHtml = htmlobject.Label;
+//                        linkbutton.Name = htmlobject.Sproc + "&" + htmlobject.Reload + "&" + htmlobject.Message;
+//                        linkbutton.ServerClick += new EventHandler(Btn_Click_Execute);
+//                    }
+
+
+
+
+                    // rest of the buttons
+                    if (htmlobject.Action != "execute" && enabled && htmlobject.Action != "browse" && htmlobject.Action != "upload")
                     {
                         HtmlAnchor linkbutton = new HtmlAnchor();
                         linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
@@ -413,26 +456,7 @@ public partial class index : BasePage  //System.Web.UI.Page
                     }
 
 
-                    // execute button separate eventhandler
-                    if (htmlobject.HtmlType == "button" && htmlobject.Action == "upload" & enabled)
-                    {
-                        HtmlAnchor linkbutton = new HtmlAnchor();
-                        linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
-                        linkbutton.InnerHtml = htmlobject.Label;
-                        linkbutton.Name = htmlobject.Sproc + "&" + htmlobject.Reload;
-                        linkbutton.ServerClick += new EventHandler(Btn_Click_Upload);
-                    }
-
-                    // execute button separate eventhandler
-                    if (htmlobject.HtmlType == "button" && htmlobject.Action == "execute" & enabled)         
-                    {
-                        HtmlAnchor linkbutton = new HtmlAnchor();
-                        linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
-                        linkbutton.InnerHtml = htmlobject.Label;
-                        linkbutton.Name = htmlobject.Sproc + "&" + htmlobject.Reload + "&" + htmlobject.Message;
-                        linkbutton.ServerClick += new EventHandler(Btn_Click_Execute);
-                    }
-
+      
 
 
                 }
@@ -564,6 +588,10 @@ public partial class index : BasePage  //System.Web.UI.Page
         }
         #endregion
     }
+
+
+
+
 
     protected void Page_Load()
     {
