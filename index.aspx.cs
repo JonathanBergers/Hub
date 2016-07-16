@@ -22,6 +22,7 @@ using System.Data.OleDb;
 //to be removed
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 
 public partial class index : BasePage  //System.Web.UI.Page
 {
@@ -376,74 +377,129 @@ public partial class index : BasePage  //System.Web.UI.Page
                         continue;
                     }
 
+                    
 
                     if (htmlobject.Enabled.ToLower() == "yes")
                     {
-                        if (htmlobject.Action == "delete" && SessionHandler.Usr.Delete)
-                        {
-                            enabled = true;
-                        }
+                 
+
                         if ((htmlobject.Action == "update" ||
                             (htmlobject.Action == "check" && SessionHandler.Usr.Authorize) ||
                             htmlobject.Action == "authorize") && SessionHandler.Usr.Update)
                         {
                             enabled = true;
                         }
-                        if ((htmlobject.Action == "insert" || htmlobject.Action == "file" || htmlobject.Action == "copy" || htmlobject.Action == "execute" || htmlobject.Action == "mail" || htmlobject.Action == "browse" || htmlobject.Action == "upload") && SessionHandler.Usr.Create)
+
+
+
+
+                        if (SessionHandler.Usr.Delete)
+                        {
+                            string[] readActions = { "delete" };
+                            if (readActions.Contains(htmlobject.Action))
+                            {
+                                enabled = true;
+                            }
+
+
+                        }
+
+
+                        if (SessionHandler.Usr.Create)
+                        {
+                            string[] createActions = { "insert", "file", "copy", "execute", "mail", "file", "browse", "upload" };
+                            if (createActions.Contains(htmlobject.Action))
+                            {
+                                enabled = true;
+                            }
+                    
+                    
+                        }
+
+                        if (SessionHandler.Usr.Read)
+                        {
+                            string[] readActions = { "search" };
+                            if (readActions.Contains(htmlobject.Action))
+                            {
+                                enabled = true;
+                            }
+
+
+                        }
+
+
+                        string[] unrestrictedActions = {"login", "back", "logoff", "cancel", "export"};
+
+                    
+                        if (unrestrictedActions.Contains(htmlobject.Action))
                         {
                             enabled = true;
                         }
-                        if (htmlobject.Action == "search" && SessionHandler.Usr.Read)
-                        {
-                            enabled = true;
-                        }
-                        if (htmlobject.Action == "login" || htmlobject.Action == "back" || htmlobject.Action == "logoff" || htmlobject.Action == "cancel" || htmlobject.Action == "export_excel")
-                        {
-                            enabled = true;
-                        }
+                       
 
                     }
 
+                    if (!enabled)
+                    {
+                        continue;
+                        
+                    }
+
+                    //set handlers
                     
                     // upload button separate eventhandler
-                    if (htmlobject.Action == "upload" & enabled)
+                    if (htmlobject.Action == "upload")
                     {
                         HtmlAnchor linkbutton = new HtmlAnchor();
                         linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
                         linkbutton.InnerHtml = htmlobject.Label;
                         linkbutton.Name = htmlobject.Sproc + "&" + htmlobject.Reload;
                         linkbutton.ServerClick += new EventHandler(Btn_Click_Upload);
+                        continue;
                     }
 
                     // execute button separate eventhandler
-                    if (htmlobject.Action == "execute" & enabled)
+                    if (htmlobject.Action == "execute")
                     {
                         HtmlAnchor linkbutton = new HtmlAnchor();
                         linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
                         linkbutton.InnerHtml = htmlobject.Label;
                         linkbutton.Name = htmlobject.Sproc + "&" + htmlobject.Reload + "&" + htmlobject.Message;
                         linkbutton.ServerClick += new EventHandler(Btn_Click_Execute);
+                        continue;
                     }
+
 
                     // browse button seperate event handler ?
 
 
 
                     // export button separate eventhandler
-//                    if (htmlobject.Action == "export_excel" & enabled)
-//                    {
-//                        HtmlAnchor linkbutton = new HtmlAnchor();
-//                        linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
-//                        linkbutton.InnerHtml = htmlobject.Label;
-//                        linkbutton.Name = htmlobject.Sproc + "&" + htmlobject.Reload + "&" + htmlobject.Message;
-//                        linkbutton.ServerClick += new EventHandler(Btn_Click_Execute);
-//                    }
+                    if (htmlobject.Action == "export")
+                    {
+                        HtmlAnchor linkbutton = new HtmlAnchor();
+                        linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
+                        linkbutton.InnerHtml = htmlobject.Label;
+                        linkbutton.Name = htmlobject.Action;
+
+                      
+
+                        string exportFormat = "excel";
+                        if (!string.IsNullOrEmpty(htmlobject.ExportFormat))
+                        {
+                            exportFormat = htmlobject.ExportFormat;
+                        }
+
+                        linkbutton.Attributes.Add("format" , exportFormat);
+                        linkbutton.ServerClick += new EventHandler(Btn_Click_Export);
+                        continue;
+                    }
 
 
 
-
+                    // no browse?
                     // rest of the buttons
-                    if (htmlobject.Action != "execute" && enabled && htmlobject.Action != "browse" && htmlobject.Action != "upload")
+                    if (htmlobject.Action != "browse")
                     {
                         HtmlAnchor linkbutton = new HtmlAnchor();
                         linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
@@ -964,6 +1020,75 @@ public partial class index : BasePage  //System.Web.UI.Page
 
     }
 
+
+
+
+
+
+
+    #region eventhandlers
+
+
+
+    protected void Btn_Click_Export(object s, EventArgs e)
+    {
+        HtmlAnchor linkbutton = (HtmlAnchor)s;
+        string format = linkbutton.Attributes["format"];
+
+        PageForm pageform = new PageForm();
+        pageform.Load(doc);
+
+
+        //TODO maybe validate format 
+        if (string.IsNullOrEmpty(format))
+        {
+            Debug.WriteLine("button export no format defined ");
+            ErHandler.errorMsg ="no export format defined";
+            ErHandler.showError();
+            return;
+
+        }
+
+        //TODO maybe validate data table (check if in sessionhandler)
+
+        Debug.WriteLine("exporting datatable, format: " + format);
+
+       
+        //create path
+        string fileName = "export_" + pageform.Database.Table + "_" + SessionHandler.Usr.User + "_"  + DateTime.Now.ToFileTime();
+        string path = Server.MapPath("~") + "export\\";
+
+        Debug.WriteLine("export upload file to path: " + path);
+
+        var exportResult = Export.exportDataTable(SessionHandler.datatable, format, fileName, path);
+
+
+        if (!exportResult.isSuccess())
+        {
+            ErHandler.errorMsg = "could not export to " + format;
+            ErHandler.showError();
+            return;
+            //TODO error handling
+
+        }
+
+        System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
+        response.ClearContent();
+        response.Clear();
+        // this may be done more correctly according to MIME type see: http://stackoverflow.com/questions/4212861/what-is-a-correct-mime-type-for-docx-pptx-etc
+        //        response.ContentType = "image/jpeg";
+        response.AddHeader("Content-Disposition", "attachment; filename=" + exportResult.fileName + "." + exportResult.extension + ";");
+        response.TransmitFile(exportResult.location);
+        response.Flush();
+        response.End();
+
+
+
+    }
+
+
+
+
     protected void Btn_Click_Execute(object s, EventArgs e)
     {
         HtmlAnchor linkbutton = (HtmlAnchor)s;
@@ -974,6 +1099,7 @@ public partial class index : BasePage  //System.Web.UI.Page
         if (message.Length == 0) { message = "Procedure executed!"; }
         PageForm pageform = new PageForm();
         pageform.Load(doc);
+        
 
         #region get parameters
         StringBuilder sbparams = new StringBuilder();
@@ -1169,6 +1295,10 @@ public partial class index : BasePage  //System.Web.UI.Page
         }
     }
 
+    
+
+
+
     protected void Btn_Click(object s, EventArgs e)
     {
         #region variables
@@ -1198,12 +1328,7 @@ public partial class index : BasePage  //System.Web.UI.Page
         switch (linkbutton.Name)
         {
 
-            case "export_excel":
-                Debug.WriteLine("export test button pressed");
-                ExcelExport.exportDataTable(SessionHandler.datatable);
-                
-
-                break;
+        
 
             case "search":
                 #region search
@@ -2892,4 +3017,7 @@ public partial class index : BasePage  //System.Web.UI.Page
             }
         }
     }
+
+
+#endregion
 }

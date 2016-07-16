@@ -1458,6 +1458,8 @@ namespace EggwiseLib
                                 dt = cs.Select(sql);
 
 
+                                //set data table in session
+                            
                                 SessionHandler.datatable = dt;
 
                                 #region paging
@@ -2206,7 +2208,7 @@ namespace EggwiseLib
                                     //BUSINES LOGIC FOR ROLES AND EXPORT
 
 
-                                    if (htmlobject.Action == "export_excel")
+                                    if (htmlobject.Action == "export")
                                     {
                                         enabled = true;
 

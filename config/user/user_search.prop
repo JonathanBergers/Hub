@@ -54,10 +54,43 @@
     <htmlobject type="button" id="3">
       <width>0</width>
       <cssclass>offset-s0</cssclass>
-      <action>export_excel</action>
-      <label>Export excel test</label>
+      <action>export</action>
+      <label>Export word test</label>
+      <exportformat>word</exportformat>
+    </htmlobject>
+    
+    <htmlobject type="button" id="4">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>export</action>
+      <label>Export pdf</label>
+      <exportformat>pdf</exportformat>
+    </htmlobject>
+    
+    <htmlobject type="button" id="5">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>export</action>
+      <label>Export excel</label>
+      <exportformat>excel</exportformat>
     </htmlobject>
 
+    <htmlobject type="button" id="6">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>export</action>
+      <label>Export ods</label>
+      <exportformat>ods</exportformat>
+    </htmlobject>
+
+
+    <htmlobject type="button" id="7">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>export</action>
+      <label>Export odt</label>
+      <exportformat>odt</exportformat>
+    </htmlobject>
 
 
     <htmlobject type="button" id="2">

@@ -82,8 +82,12 @@ namespace EggwiseLib
                 htmlobject.Icon = node.SelectSingleNode("icon") == null ? "" : node.SelectSingleNode("icon").InnerText;
 
 
+
                 htmlobject.RowHeight = node.SelectSingleNode("rowheight") == null ? 0 : int.Parse(node.SelectSingleNode("rowheight").InnerText);
                 //htmlobject.ListSize = node.SelectSingleNode("listsize") == null ? 4 : int.Parse(node.SelectSingleNode("listsize").InnerText);
+
+                htmlobject.ExportFormat = node.SelectSingleNode("exportformat") == null ? "" : node.SelectSingleNode("exportformat").InnerText;
+
 
                 oItems.Add(htmlobject);
             }
@@ -622,6 +626,8 @@ namespace EggwiseLib
             get { return oColumns; }
             set { oColumns = value; }
         }
+
+        public string ExportFormat { get; set; }
 
         //public int ListSize
         //{
