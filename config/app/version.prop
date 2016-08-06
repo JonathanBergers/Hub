@@ -19,6 +19,9 @@
     <script type ="css">
       <include>style/materialize/css/materialize.min.css</include>
     </script>
+    <script type ="css">
+      <include>style/notie.css</include>
+    </script>
     <script type ="javascript">
       <include>style/materialize/js/materialize.min.js</include>
     </script>
@@ -42,7 +45,10 @@
       <script type ="javascript">
       <include>javascript/validation.js</include>
     </script>
-  
+
+   
+
+
   </scripts>
 
    

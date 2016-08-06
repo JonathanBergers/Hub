@@ -99,7 +99,10 @@ namespace EggwiseLib
             }
             catch (Exception e)
             {
+
+
                 Debug.WriteLine("error: " + e.Message);
+                return ExportResult.error();
                 throw;
             }
 

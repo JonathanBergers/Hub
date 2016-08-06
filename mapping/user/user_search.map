@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mapping>
+  <table>test3</table>
+  <preload>truncate table test3;</preload>
+  <columns>  
+    <column>
+      <columnorderfile>0</columnorderfile>
+      <field>ID</field>
+      <datatype>integer</datatype>
+      <length>50</length>
+    </column>
+    <column>
+      <columnorderfile>1</columnorderfile>
+      <field>name</field>
+      <datatype>character</datatype>
+      <length>50</length>
+    </column>
+    <column>
+      <columnorderfile>2</columnorderfile>
+      <field>amount</field>
+      <datatype>integer</datatype>
+      <length>12</length>
+    </column>
+  </columns>
+</mapping>

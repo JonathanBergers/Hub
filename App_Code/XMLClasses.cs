@@ -87,7 +87,7 @@ namespace EggwiseLib
                 //htmlobject.ListSize = node.SelectSingleNode("listsize") == null ? 4 : int.Parse(node.SelectSingleNode("listsize").InnerText);
 
                 htmlobject.ExportFormat = node.SelectSingleNode("exportformat") == null ? "" : node.SelectSingleNode("exportformat").InnerText;
-
+                htmlobject.Entity = node.SelectSingleNode("entity") == null ? "" : node.SelectSingleNode("entity").InnerText;
 
                 oItems.Add(htmlobject);
             }
@@ -629,6 +629,8 @@ namespace EggwiseLib
 
         public string ExportFormat { get; set; }
 
+
+        public string Entity { get; set; }
         //public int ListSize
         //{
         //    get { return iListSize; }

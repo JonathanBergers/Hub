@@ -59,6 +59,23 @@
   </menuitem>
 
 
+  <menuitem level ="1">
+    <menutext>Import test</menutext>
+    <security>admin</security>
+
+    <menuitem>
+      <menutext>Uploads</menutext>
+      <module>/test/upload</module>
+    </menuitem>
+
+    <menuitem>
+      <menutext>Convertions</menutext>
+      <module>/test/test_convert</module>
+    </menuitem>
+
+
+  </menuitem>
+
 
 
 

@@ -23,6 +23,9 @@ namespace EggwiseLib
 
 
 
+
+
+
     public static class Tools
     {
 
@@ -170,6 +173,10 @@ namespace EggwiseLib
 
     }
 
+
+   
+
+
     public static class ErHandler
     {
 
@@ -220,12 +227,21 @@ namespace EggwiseLib
 
         public static void showError()
         {
+
+            var error = errorMsg.Trim();
+
+            if (error.Length == 0)
+            {
+                return;
+            }
             HtmlGenericControl d = new HtmlGenericControl("div");
             Page page = (Page)HttpContext.Current.Handler;
 
             d = (HtmlGenericControl)page.FindControl("debugpanel");
-            d.InnerHtml = "<span id=\"debugpanelspan\" style=\"font-family: Arial, Helvetica, sans-serif; color: red; font-size: 10pt;\">" + 
-            errorMsg + "</span>";
+
+            d.InnerHtml = "<script>var message = '"+ error+ "'; notie.alert(3, message, 2.5);</script>";
+//            d.InnerHtml = "<span id=\"debugpanelspan\" style=\"font-family: Arial, Helvetica, sans-serif; color: red; font-size: 10pt;\">" + 
+//            errorMsg + "</span>";
         }
 
     }

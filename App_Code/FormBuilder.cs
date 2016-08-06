@@ -491,7 +491,7 @@ namespace EggwiseLib
             HtmlGenericControl icon)
         {
             HtmlGenericControl placehholder = new HtmlGenericControl("div");
-            placehholder.Attributes["class"] += "input-field file-field";
+            placehholder.Attributes["class"] += "file-field input-field ";
             placehholder.Attributes["class"] += " col s" + htmlObject.Width.ToString();
 
 
@@ -519,8 +519,9 @@ namespace EggwiseLib
                 buttonDiv.Controls.Add(icon);
             }
 
-            HtmlGenericControl fileInput = new HtmlGenericControl("input");
-            fileInput.Attributes["type"] = "file";
+            HtmlInputFile fileInput = new HtmlInputFile();
+//            fileInput.Attributes["type"] = "file";
+            fileInput.ID = "fileupload";
             buttonDiv.Controls.Add(fileInput);
 
             placehholder.Controls.Add(buttonDiv);
@@ -533,7 +534,7 @@ namespace EggwiseLib
             placehholder.Controls.Add(fileWrapDiv);
 
             HtmlGenericControl fileTextInput = new HtmlGenericControl("input");
-            fileTextInput.Attributes["class"] += "validate";
+            fileTextInput.Attributes["class"] += " file-path validate";
             fileTextInput.Attributes["type"] = "text";
 
             if (!string.IsNullOrEmpty(htmlObject.Length))
@@ -2155,7 +2156,7 @@ namespace EggwiseLib
 //                                sectionpanel.Controls.Add(textarea);
                                 break;
 
-                                #endregion
+                            #endregion
 
                             case "button":
 
@@ -2219,20 +2220,33 @@ namespace EggwiseLib
 
                                 if (htmlobject.Action == "browse")
                                 {
-                                    FileUpload fu = new FileUpload();
-                                    fu.ID = "fileupload";
-                                    fu.Enabled = enabled;
-                                    fu.Attributes["tabindex"] = htmlobject.TabOrder.ToString();
-                                    fu.Attributes["style"] = "opacity:0";
-                                    fu.Width = 40;
+//
+//                                    HtmlInputFile fileInput = new HtmlInputFile();
+//                                    fileInput.ID = "fileupload";
 
-                                    HtmlAnchor butd = new HtmlAnchor();
-                                    butd.ID = "ctl" + section.ID + "_" + htmlobject.ID;
-                                    butd.Attributes["class"] += " " + htmlobject.CssClass;
-                                    butd.Controls.Add(fu);
-                                    butd.Attributes["class"] += " " + "browse";
-                                    sectionpanel.Controls.Add(butd);
-                                    sectionpanel.Controls.Add(CreateHTMLObjects.CreateNewLine(1, 8));
+                                    sectionpanel.Controls.Add(buildFileInput(htmlobject, section, true, null));
+//                                    var fileInput = new LiteralControl(Renderer.renderFileupload());
+//                                    sectionpanel.Controls.Add(fileInput);
+
+
+                                    //                                    FileUpload fu = new FileUpload();
+                                    //                                    fu.ID = "fileupload";
+                                    //                                    fu.Enabled = enabled;
+                                    //                                    
+                                    ////                                    fu.Attributes["tabindex"] = htmlobject.TabOrder.ToString();
+                                    ////                                    fu.Attributes["style"] = "opacity:0";
+                                    ////                                    fu.Width = 40;
+                                    //
+                                    //                                    HtmlAnchor butd = new HtmlAnchor();
+                                    //                                    butd.ID = "ctl" + section.ID + "_" + htmlobject.ID;
+                                    //                                    butd.Attributes["class"] += " " + htmlobject.CssClass;
+                                    //                                    butd.Controls.Add(fu);
+                                    ////                                    butd.Title = "button browse!";
+                                    //                                    butd.Attributes["class"] += " " + "browse";
+                                    //                                    sectionpanel.Controls.Add(butd);
+//                                    sectionpanel.Controls.Add(CreateHTMLObjects.CreateNewLine(1, 8));
+////                                    sectionpanel.Controls.Add(fu);
+//                                    sectionpanel.Controls.Add(new LiteralControl(Renderer.renderFileupload()));
                                 }
                                 else
                                 {

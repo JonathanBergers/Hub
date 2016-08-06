@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mapping>
+  <table>rqmtest</table>
+  <preload>truncate table rqmtest;</preload>
+  <columns>
+    <column>
+      <columnorderfile>-1</columnorderfile>
+      <field>[file]</field>
+      <defvalue>@file</defvalue>
+      <datatype>character</datatype>
+      <length>10</length>
+    </column>
+      <column>
+        <columnorderfile>-1</columnorderfile>
+        <field>[usr]</field>
+        <defvalue>@user</defvalue>
+        <datatype>character</datatype>
+        <length>10</length>
+    </column>    
+    <column>
+      <columnorderfile>0</columnorderfile>
+      <field>[ID]</field>
+      <datatype>integer</datatype>
+      <length>50</length>
+    </column>
+    <column>
+      <columnorderfile>1</columnorderfile>
+      <field>[field1]</field>
+      <datatype>character</datatype>
+      <length>50</length>
+    </column>
+    <column>
+      <columnorderfile>2</columnorderfile>
+      <field>[field2]</field>
+      <datatype>character</datatype>
+      <length>12</length>
+    </column>
+  </columns>
+</mapping>

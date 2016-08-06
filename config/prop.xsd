@@ -128,12 +128,14 @@
                         <xs:element name="filepath" type="xs:string" />
                         <xs:element name="delimeter" type="xs:string" />
                         <xs:element name="height" type="xs:unsignedShort" />
-                        <xs:element name="rowheight" type="xs:unsignedShort" />
+						<xs:element name="rowheight" type="xs:unsignedShort" />
                         <xs:element name="display" type="xs:string" />
                         <xs:element name="dbtable" type="xs:string" />
                         <xs:element name="dbkey" type="xs:string" />
                         <xs:element name="navigate" type="xs:string" />
                         <xs:element name="message" type="xs:string" />
+                        <xs:element name="exportformat" type="xs:string" />
+                        <xs:element name="entity" type="xs:string" />
                       </xs:choice>
                     </xs:sequence>
                     <xs:attribute name="id" type="xs:string" use="optional" />

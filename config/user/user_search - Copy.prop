@@ -54,6 +54,47 @@
     </htmlobject>
 
 
+    <htmlobject type="button" id="3">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>export</action>
+      <label>Export word test</label>
+      <exportformat>word</exportformat>
+    </htmlobject>
+    
+    <htmlobject type="button" id="4">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>export</action>
+      <label>Export pdf</label>
+      <exportformat>pdf</exportformat>
+    </htmlobject>
+    
+    <htmlobject type="button" id="5">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>export</action>
+      <label>Export excel</label>
+      <exportformat>excel</exportformat>
+    </htmlobject>
+
+    <htmlobject type="button" id="6">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>export</action>
+      <label>Export ods</label>
+      <exportformat>ods</exportformat>
+    </htmlobject>
+
+
+    <htmlobject type="button" id="7">
+      <width>0</width>
+      <cssclass>offset-s0</cssclass>
+      <action>export</action>
+      <label>Export odt</label>
+      <exportformat>odt</exportformat>
+    </htmlobject>
+
 
     <htmlobject type="button" id="2">
       <width>0</width>
@@ -64,24 +105,18 @@
     </htmlobject>
 
 
-
-  </section>
-
-  <section id="uploadtest">
     <htmlobject type="button" id="77">
       <width>4</width>
-      <label>Browse excel</label>
+      <label>Browse</label>
       <action>browse</action>
-      <icon>library_books</icon>
     </htmlobject>
 
     <htmlobject type="button" id="333">
       <width>4</width>
-      <label>upload</label>
+      <label>upload TEST</label>
       <action>upload</action>
     </htmlobject>
-    
-    
+
   </section>
   <section id="table_section">
 

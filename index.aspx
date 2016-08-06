@@ -23,7 +23,7 @@
 //            });
         </script>
 
-         <form id="frm" runat="server" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], input[parsley-enabled=no], [disabled], :hidden" data-parsley-validate data-parsley-errors-wrapper=" " data-parsley-error-template=" " style="height: 100%">
+         <form id="frm" runat="server" enctype="multipart/form-data" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], input[parsley-enabled=no], [disabled], :hidden" data-parsley-validate data-parsley-errors-wrapper=" " data-parsley-error-template=" " style="height: 100%">
         </form>
 </body>
  

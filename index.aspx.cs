@@ -23,6 +23,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using Excel;
 
 public partial class index : BasePage  //System.Web.UI.Page
 {
@@ -168,7 +169,12 @@ public partial class index : BasePage  //System.Web.UI.Page
         sideMenu.ID = "sideMenu";
         sideMenu.Attributes["class"] = "sideMenu";
         frm.Controls.Add(sideMenu);
-    
+
+
+        HtmlGenericControl javascriptBody = new HtmlGenericControl("div");
+        sideMenu.ID = "jsBody";
+        frm.Controls.Add(javascriptBody);
+
 
         //add nav item       class="right
         //HtmlGenericControl nav = new HtmlGenericControl("nav");
@@ -544,6 +550,8 @@ public partial class index : BasePage  //System.Web.UI.Page
         Page.Header.Controls.Add(CreateHTMLObjects.CreateJavaScriptLink("https://code.jquery.com/jquery-2.1.4.min.js"));
         //Page.Header.Controls.Add(CreateHTMLObjects.CreateJavaScriptLink("~/javascript/parsley.min.js"));
 
+
+        Page.FindControl("jsBody").Controls.Add(CreateHTMLObjects.CreateJavaScriptLink("~/javascript/notie.min.js"));
 
         Page.Header.Controls.Add(CreateHTMLObjects.CreateNewLine(1, 8));
         Page.Header.Controls.Add(CreateHTMLObjects.CreateJavaScriptLink("~/javascript/generic.js"));
@@ -1055,10 +1063,11 @@ public partial class index : BasePage  //System.Web.UI.Page
 
        
         //create path
-        string fileName = "export_" + pageform.Database.Table + "_" + SessionHandler.Usr.User + "_"  + DateTime.Now.ToFileTime();
+        string fileName = "export_" + pageform.Title + "_" + SessionHandler.Usr.User + "_"  + DateTime.Now.ToFileTime();
         string path = Server.MapPath("~") + "export\\";
 
         Debug.WriteLine("export upload file to path: " + path);
+        
 
         var exportResult = Export.exportDataTable(SessionHandler.datatable, format, fileName, path);
 
@@ -2803,16 +2812,475 @@ public partial class index : BasePage  //System.Web.UI.Page
 
     }
 
+
+
+    protected void Btn_Click_Convert(object s, EventArgs e)
+    {
+
+
+        // find file path 
+        // find mapping path 
+        // create conversion object in db
+        // apply mapping & insert
+        
+
+
+    }
+
+    protected void importExcel()
+    {
+//
+//        string excelPath = Server.MapPath("~/files/") + SessionHandler.Usr.User + "_" + DateTime.Now.ToOADate() * 10000000000 + "_" + fu.FileName;
+//        fu.SaveAs(excelPath);
+//
+//        string conString = string.Empty;
+//        string extension = Path.GetExtension(fu.PostedFile.FileName);
+//
+//        if (extension == ".xls" || extension == ".xlsx")
+//        {
+//            switch (extension)
+//            {
+//                case ".xls": //Excel 97-03
+//                    conString = ConfigurationManager.ConnectionStrings["Excel03ConString"].ConnectionString;
+//                    break;
+//                case ".xlsx": //Excel 07 or higher
+//                    conString = ConfigurationManager.ConnectionStrings["Excel07+ConString"].ConnectionString;
+//                    break;
+//            }
+//
+//            conString = string.Format(conString, excelPath);
+//
+//            using (OleDbConnection excel_con = new OleDbConnection(conString))
+//            {
+//                excel_con.Open();
+//                string sheet1 = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null).Rows[0]["TABLE_NAME"].ToString();
+//                DataTable dtExcelData = new DataTable();
+//                using (OleDbDataAdapter oda = new OleDbDataAdapter("SELECT * FROM [" + sheet1 + "]", excel_con))
+//                {
+//                    oda.Fill(dtExcelData);
+//                }
+//                excel_con.Close();
+//
+//                #endregion
+//
+//                #region mapping
+//                Mapping m = new Mapping();
+//                m.Load();
+//                string sql = string.Empty;
+//                StringBuilder fields = new StringBuilder();
+//                StringBuilder values = new StringBuilder();
+//
+//                #endregion
+//
+//                #region load in db
+//
+//                string pl = m.Preload;
+//                if (pl.Length > 0)
+//                {
+//                    pl = pl.Replace("@user", "'" + SessionHandler.Usr.User + "'");
+//                    pl = pl.Replace("@module", "'" + SessionHandler.Qstring.Pageform + "'");
+//                    pl = pl.Replace("@filter", "'" + SessionHandler.Qstring.Filter.Split('|')[0] + "'");
+//                    pl = pl.Replace("@role", "'" + SessionHandler.accesslevel + "'");
+//                    pl = pl.Replace("@department", "'" + SessionHandler.Usr.Department + "'");
+//                    pl = pl.Replace("@file", "'" + parameter.Value + "'");
+//
+//                    //TODO here implement conversion/tion ID of the object
+//                    //                                                pl = pl.Replace("@conversion", "'" + parameter.Value + "'");
+//                    cs.Update(pl);
+//                }
+//
+//                // loop through the lines is there a header?
+//                for (int i1 = 0; i1 <= dtExcelData.Rows.Count - 1; i1++)
+//                {
+//
+//                    fields.Append(m.Table + " (");
+//                    fields.Length = 0;
+//                    values.Length = 0;
+//                    sql = string.Empty;
+//                    fields.Append("insert into ");
+//                    fields.Append(m.Table + " (");
+//
+//                    // mapping columns
+//                    foreach (ExcelColumn col in m.Columns)
+//                    {
+//                        fields.Append(col.Field + ",");
+//                        if (col.ColumnOrder >= 0)
+//                        {
+//                            if (col.DataType == "character" && col.ColumnOrder <= dtExcelData.Rows.Count - 1)
+//                            {
+//
+//                                // field length
+//                                int l = dtExcelData.Rows[i1][col.ColumnOrder].ToString().Length > col.Length ? col.Length : dtExcelData.Rows[i1][col.ColumnOrder].ToString().Length;
+//                                values.Append("'" + dtExcelData.Rows[i1][col.ColumnOrder].ToString().Substring(0, l).Replace("'", "''") + "',");
+//                            }
+//
+//                            else
+//                            {
+//                                if (col.DataType == "date" && col.ColumnOrder <= dtExcelData.Rows.Count - 1)
+//                                {
+//                                    string[] rd = dtExcelData.Rows[i1][col.ColumnOrder].ToString().Replace("/", "-").Replace(".", "-").Replace(" ", "-").Split('-');
+//                                    string[] fd = col.Format.Replace("/", "-").Replace(".", "-").Replace(" ", "-").Split('-');
+//                                    string tm = "12:00:00";
+//                                    if (Array.IndexOf(fd, "hh:mm:ss") > -1)
+//                                    {
+//                                        tm = rd[3];
+//                                    }
+//                                    values.Append("'" +
+//                                        rd[Array.IndexOf(fd, "yyyy")] + "-" +
+//                                        rd[Array.IndexOf(fd, "mm")] + "-" +
+//                                        rd[Array.IndexOf(fd, "dd")] + " " + tm + "',");
+//                                }
+//                                else // numeric
+//                                {
+//                                    values.Append("'" + dtExcelData.Rows[i1][col.ColumnOrder].ToString().Replace("'", "''") + "',");
+//                                }
+//                            }
+//                        }
+//                        else
+//                        {
+//                            string dv = col.DefValue;
+//                            dv = dv.Replace("@user", SessionHandler.Usr.User);
+//                            dv = dv.Replace("@module", SessionHandler.Qstring.Pageform);
+//                            dv = dv.Replace("@filter", SessionHandler.Qstring.Filter.Split('|')[0]);
+//                            dv = dv.Replace("@role", SessionHandler.accesslevel);
+//                            dv = dv.Replace("@department", SessionHandler.Usr.Department);
+//                            dv = dv.Replace("@file", parameter.Value);
+//                            values.Append("'" + dv + "',");
+//                        }
+//                    }
+//
+//                    // make sql
+//                    sql = fields.ToString().TrimEnd(',');
+//                    sql = sql + ") values (" + values.ToString().TrimEnd(',') + ");";
+//                    // write to database
+//                    cs.Update(sql);
+//
+//                    #endregion
+                
+            }
+
+    protected FileStruct uploadFile()
+    {
+        //TODO check extensions
+        // try catch
+
+        string[] allowedExtensions = {"xls", "xlsx"};
+      
+            HtmlInputFile fileInput = (HtmlInputFile) Page.FindControl("fileupload");
+
+            if (fileInput == null)
+            {
+                throw new Exception("could not find file input on page");
+
+            }
+           
+            
+            
+
+        HttpPostedFile file = fileInput.PostedFile;
+
+        if (file == null || file.ContentLength == 0)
+        {
+         
+            throw new Exception("empty or corrupt file");
+
+        }
+
+        string fileName = Path.GetFileName(file.FileName);
+
+        if (string.IsNullOrEmpty(fileName))
+        {
+            throw new Exception("no filename specified");
+
+        }
+        
+
+        string[] fileNamesplit = file.FileName.Split('.');
+        if (fileNamesplit.Length < 2)
+        {
+            throw new Exception("file has no extension");
+            
+        }
+        if (fileNamesplit.Length > 2)
+        {
+            throw new Exception("filename contains dots");
+
+        }
+        string extension = fileNamesplit[1];
+
+        if (!allowedExtensions.Contains(extension))
+        {
+      
+            throw new Exception("file extension not allowed: " + extension);
+
+        }
+
+        //todo exception handling when saving ?
+         string fileLocation = Server.MapPath("~/files/") + SessionHandler.Usr.User + "_" +
+                               DateTime.Now.ToOADate()*10000000000 + "_" + fileName;
+        
+         file.SaveAs(fileLocation);
+
+        FileStruct fileStruct = new FileStruct(fileName, extension, fileLocation);
+
+    
+        return fileStruct;
+
+       
+        
+
+
+
+
+
+
+
+    }
+
+    protected DataTable readDataTableFromExcel(FileStruct file)
+    {
+
+
+     
+
+        FileStream stream = File.Open(file.location, FileMode.Open, FileAccess.Read);
+        //1. Reading from a binary Excel file ('97-2003 format; *.xls)
+//        IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
+
+        //2. Reading from a OpenXml Excel file (2007 format; *.xlsx)
+        IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+        excelReader.IsFirstRowAsColumnNames = true;
+        DataSet result = excelReader.AsDataSet();
+
+        //error handling when file is empty? no tables are found ?
+        // get table
+
+        var table = result.Tables[0];
+
+        return table;
+
+
+
+
+
+
+
+
+    }
+
+
+
+    protected Tuple<string, string[]> convertExcelToSQL(FileStruct excelFile)
+    {
+
+
+        DataTable dTable = readDataTableFromExcel(excelFile);
+        return mapDatatableToSQL(dTable, excelFile.fileName);
+    }
+
+
+    /**reads the mapping, and builds insert query strings from the datatable
+     * if a preload query is defined, the first of the pair returned is the preload query
+     * 
+     */
+    protected Tuple<string, string[]> mapDatatableToSQL(DataTable dataTable, string fileName)
+    {
+
+
+        #region mapping
+        Mapping mapping = new Mapping();
+        mapping.Load();
+      
+
+        string sql = string.Empty;
+        StringBuilder fields = new StringBuilder();
+        StringBuilder values = new StringBuilder();
+
+        #endregion
+        
+
+        var rowAmount = dataTable.Rows.Count;
+    
+        string[] queries = new string[rowAmount];
+  
+        #region preload
+
+
+        string preloadQuery = mapping.Preload;
+        if (preloadQuery.Length > 0)
+        {
+            preloadQuery = preloadQuery.Replace("@user", "'" + SessionHandler.Usr.User + "'");
+            preloadQuery = preloadQuery.Replace("@module", "'" + SessionHandler.Qstring.Pageform + "'");
+            preloadQuery = preloadQuery.Replace("@filter", "'" + SessionHandler.Qstring.Filter.Split('|')[0] + "'");
+            preloadQuery = preloadQuery.Replace("@role", "'" + SessionHandler.accesslevel + "'");
+            preloadQuery = preloadQuery.Replace("@department", "'" + SessionHandler.Usr.Department + "'");
+            preloadQuery = preloadQuery.Replace("@file", "'" + fileName + "'");
+
+            //TODO here implement conversion/tion ID of the object
+            //                                                pl = pl.Replace("@conversion", "'" + parameter.Value + "'");
+
+
+        }
+        else
+        {
+            preloadQuery = null;
+        }
+            
+
+
+
+        #endregion
+
+
+        #region buildQuery
+
+
+
+        // loop through the lines is there a header?
+        for (int rowNumber = 0; rowNumber <= rowAmount - 1; rowNumber++)
+        {
+
+            fields.Append(mapping.Table + " (");
+            fields.Length = 0;
+            values.Length = 0;
+            sql = string.Empty;
+            fields.Append("insert into ");
+            fields.Append(mapping.Table + " (");
+
+            // mapping columns
+            foreach (ExcelColumn col in mapping.Columns)
+            {
+                fields.Append(col.Field + ",");
+                if (col.ColumnOrder >= 0)
+                {
+                    if (col.DataType == "character" && col.ColumnOrder <= rowAmount - 1)
+                    {
+
+                        // field length
+                        int l = dataTable.Rows[rowNumber][col.ColumnOrder].ToString().Length > col.Length
+                            ? col.Length
+                            : dataTable.Rows[rowNumber][col.ColumnOrder].ToString().Length;
+                        values.Append("'" +
+                                      dataTable.Rows[rowNumber][col.ColumnOrder].ToString().Substring(0, l).Replace("'", "''") +
+                                      "',");
+                    }
+
+                    else
+                    {
+                        if (col.DataType == "date" && col.ColumnOrder <= rowAmount - 1)
+                        {
+                            string[] rd =
+                                dataTable.Rows[rowNumber][col.ColumnOrder].ToString()
+                                    .Replace("/", "-")
+                                    .Replace(".", "-")
+                                    .Replace(" ", "-")
+                                    .Split('-');
+                            string[] fd = col.Format.Replace("/", "-").Replace(".", "-").Replace(" ", "-").Split('-');
+                            string tm = "12:00:00";
+                            if (Array.IndexOf(fd, "hh:mm:ss") > -1)
+                            {
+                                tm = rd[3];
+                            }
+                            values.Append("'" +
+                                          rd[Array.IndexOf(fd, "yyyy")] + "-" +
+                                          rd[Array.IndexOf(fd, "mm")] + "-" +
+                                          rd[Array.IndexOf(fd, "dd")] + " " + tm + "',");
+                        }
+                        else // numeric
+                        {
+                            values.Append("'" + dataTable.Rows[rowNumber][col.ColumnOrder].ToString().Replace("'", "''") + "',");
+                        }
+                    }
+                }
+                else
+                {
+                    string dv = col.DefValue;
+                    dv = dv.Replace("@user", SessionHandler.Usr.User);
+                    dv = dv.Replace("@module", SessionHandler.Qstring.Pageform);
+                    dv = dv.Replace("@filter", SessionHandler.Qstring.Filter.Split('|')[0]);
+                    dv = dv.Replace("@role", SessionHandler.accesslevel);
+                    dv = dv.Replace("@department", SessionHandler.Usr.Department);
+//                    dv = dv.Replace("@file", parameter.Value);
+                    values.Append("'" + dv + "',");
+                }
+            }
+
+            // make sql
+            sql = fields.ToString().TrimEnd(',');
+            sql = sql + ") values (" + values.ToString().TrimEnd(',') + ");";
+
+            queries[rowNumber] = sql;
+            // write to database
+//            cs.Update(sql);
+
+            #endregion
+
+
+
+        }
+
+        return Tuple.Create(preloadQuery, queries);
+
+    }
+
     protected void Btn_Click_Upload(object s, EventArgs e)
     {
+
+
+        //TODO error handling if file upload failed
+        //TODO catch exceptions and display to user
+      
+        try
+        {
+            var fileStruct = uploadFile();
+            
+            var convertResult = convertExcelToSQL(fileStruct);
+
+            string preloadQuery = convertResult.Item1;
+            string[] queries = convertResult.Item2;
+      
+
+            ConnectionString connectionString = new ConnectionString(SessionHandler.connection);
+
+            if (preloadQuery != null)
+            {
+                //TODO preload error handling ?
+                Debug.WriteLine("PRELOAD QUERY: " + preloadQuery);
+                connectionString.Update(preloadQuery);
+
+            }
+        
+
+            foreach (var query in queries)
+            {
+
+                Debug.WriteLine("EXCELCONVERT QUERY:  " + query);
+                connectionString.Update(query);
+            }
+            return;
+
+        }
+        catch (Exception ex)
+        {
+
+            ErHandler.errorMsg = ex.Message;
+            ErHandler.showError();
+            return;
+        }
+       
+        
+
+
         PageForm pageform = new PageForm();
         pageform.Load(doc);
         HtmlAnchor linkbutton = (HtmlAnchor)s;
         FileUpload fu = new FileUpload();
         string reload = linkbutton.Name.Split('&')[1];
         fu = (FileUpload)Page.FindControl("fileupload");
+        HtmlInputText fileInput = (HtmlInputText) Page.FindControl("fileupload_input");
         ConnectionString cs = new ConnectionString(SessionHandler.connection);
 
+        
         foreach (Section section in pageform.Sections.Items)
         {
 
@@ -2888,6 +3356,9 @@ public partial class index : BasePage  //System.Web.UI.Page
                                                 pl = pl.Replace("@role", "'" + SessionHandler.accesslevel + "'");
                                                 pl = pl.Replace("@department", "'" + SessionHandler.Usr.Department + "'");
                                                 pl = pl.Replace("@file", "'" + parameter.Value + "'");
+
+                                                //TODO here implement conversion/tion ID of the object
+//                                                pl = pl.Replace("@conversion", "'" + parameter.Value + "'");
                                                 cs.Update(pl);
                                             }
 

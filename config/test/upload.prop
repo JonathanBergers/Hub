@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form id="search">
   <database>
-    <table>test3</table>
+    <table>upload</table>
     <order>id</order>
     <condition>1=1</condition>
     <connection>test</connection>
     <primarykey>id</primarykey>
   </database>
+  
+  
   <actiontype>search</actiontype>
   <access>admin</access>
+  
+  
   <section id="0">
     <htmlobject type="inputbox" id="0">
       <width>2</width>
@@ -16,6 +20,8 @@
       <enabled>no</enabled>
       <dbfield>ID</dbfield>
       <label>ID</label>
+      
+      
     </htmlobject>
 
 
@@ -25,64 +31,36 @@
     <htmlobject type="inputbox" id="0">
       <width>4</width>
       <cssclass>offset-s0</cssclass>
-      <dbfield>name</dbfield>
-      <label>Name</label>
+      <dbfield>path</dbfield>
+      <label>path</label>
     </htmlobject>
+    
+    
     <htmlobject type="inputbox" id="1">
       <width>4</width>
       <cssclass>offset-s0</cssclass>
-      <dbfield>amount</dbfield>
-      <label>Amount</label>
+      <dbfield>username</dbfield>
+      <label>Username</label>
     </htmlobject>
-  </section>
 
-  <section id="4">
-    <htmlobject type="button" id="0">
-      <width>0</width>
+    <htmlobject type="dropdown" id="2">
+      <width>4</width>
       <cssclass>offset-s0</cssclass>
-      <action>insert</action>
-      <label>Save</label>
+      <dbfield>type</dbfield>
+      <label>Type</label>
+      <list>[EXCEL_UPLOAD, MAPPING_FILE]</list>
     </htmlobject>
-    
-    
-    <htmlobject type="button" id="1">
+
+    <htmlobject type="button" id="3" >
       <width>0</width>
       <cssclass>offset-s0</cssclass>
       <action>insert</action>
       <label>Cancel</label>
-      
     </htmlobject>
-
-
-
-    <htmlobject type="button" id="2">
-      <width>0</width>
-      <enabled>yes</enabled>
-      <cssclass>offset-s0</cssclass>
-      <action>update</action>
-      <label>Update</label>
-    </htmlobject>
-
-
-
   </section>
 
-  <section id="uploadtest">
-    <htmlobject type="button" id="77">
-      <width>4</width>
-      <label>Browse excel</label>
-      <action>browse</action>
-      <icon>library_books</icon>
-    </htmlobject>
+ 
 
-    <htmlobject type="button" id="333">
-      <width>4</width>
-      <label>upload</label>
-      <action>upload</action>
-    </htmlobject>
-    
-    
-  </section>
   <section id="table_section">
 
     <class>section_table</class>
@@ -90,18 +68,18 @@
       <update>/user/user_update</update>
       <rows>10</rows>
       <dbkey>id</dbkey>
-      <dbtable>test3</dbtable>
+      <dbtable>upload</dbtable>
       <columns>
         <column id="0">
           <dbfield>ID</dbfield>
         </column>
         <column id="1">
-          <dbfield>name</dbfield>
+          <dbfield>path</dbfield>
         </column>
-        <column id="2" type="inputbox-number">
-          <dbfield>amount</dbfield>
+        <column id="2">
+          <dbfield>type</dbfield>
         </column>
-
+ 
 
       </columns>
       <delete>/user/user_delete</delete>
@@ -110,10 +88,10 @@
           <name>ID</name>
         </header>
         <header id="1">
-          <name>Name</name>
+          <name>Path</name>
         </header>
         <header id="2">
-          <name>Amount</name>
+          <name>Type</name>
         </header>
       </headers>
       <direction>asc</direction>

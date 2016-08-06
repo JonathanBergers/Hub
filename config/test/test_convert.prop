@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form id="search">
   <database>
-    <table>test3</table>
+    <table>conversion</table>
     <order>id</order>
     <condition>1=1</condition>
     <connection>test</connection>
@@ -22,19 +22,48 @@
 
   </section>
   <section id="1">
-    <htmlobject type="inputbox" id="0">
+
+    <htmlobject type="dropdown" id="0">
       <width>4</width>
       <cssclass>offset-s0</cssclass>
-      <dbfield>name</dbfield>
-      <label>Name</label>
+      <dbfield>excel_file</dbfield>
+      <list>select id, path from upload where type = 'EXCEL_UPLOAD'</list>
+      <label>Excel_file</label>
+      <entity>file_excel</entity>
     </htmlobject>
-    <htmlobject type="inputbox" id="1">
+
+
+    <htmlobject type="dropdown" id="1">
       <width>4</width>
       <cssclass>offset-s0</cssclass>
-      <dbfield>amount</dbfield>
-      <label>Amount</label>
+      <dbfield>conversion_file</dbfield>
+      <list>select id, path  from upload where type= 'MAPPING_FILE' </list>
+<!--      flexibiliteit voor het kiezen van bestanden-->
+      
+      <label>Mapping file</label>
+      <entity>file_mapping</entity>
     </htmlobject>
+
+    
+    <htmlobject type="button" id="77">
+      <width>4</width>
+      <label>Browse</label>
+      <action>browse</action>
+    </htmlobject>
+    
+      <htmlobject type="button" id="8">
+      <width>4</width>
+      <label>upload TEST</label>
+      <action>upload</action>
+    </htmlobject>  
+    
+  
+<!--    hier een button voor convereren-->
+    
+    
   </section>
+
+
 
   <section id="4">
     <htmlobject type="button" id="0">
@@ -43,51 +72,13 @@
       <action>insert</action>
       <label>Save</label>
     </htmlobject>
-    
-    
-    <htmlobject type="button" id="1">
-      <width>0</width>
-      <cssclass>offset-s0</cssclass>
-      <action>insert</action>
-      <label>Cancel</label>
-      
-    </htmlobject>
 
 
-
-    <htmlobject type="button" id="2">
-      <width>0</width>
-      <enabled>yes</enabled>
-      <cssclass>offset-s0</cssclass>
-      <action>update</action>
-      <label>Update</label>
-    </htmlobject>
-
-
-
-  </section>
-
-  <section id="uploadtest">
-    <htmlobject type="button" id="77">
-      <width>4</width>
-      <label>Browse excel</label>
-      <action>browse</action>
-      <icon>library_books</icon>
-    </htmlobject>
-
-    <htmlobject type="button" id="333">
-      <width>4</width>
-      <label>upload</label>
-      <action>upload</action>
-    </htmlobject>
-    
-    
   </section>
   <section id="table_section">
 
     <class>section_table</class>
     <htmlobject type="table" id="table">
-      <update>/user/user_update</update>
       <rows>10</rows>
       <dbkey>id</dbkey>
       <dbtable>test3</dbtable>
@@ -96,24 +87,23 @@
           <dbfield>ID</dbfield>
         </column>
         <column id="1">
-          <dbfield>name</dbfield>
+          <dbfield>excel_file</dbfield>
         </column>
         <column id="2" type="inputbox-number">
-          <dbfield>amount</dbfield>
+          <dbfield>conversion_file</dbfield>
         </column>
 
 
       </columns>
-      <delete>/user/user_delete</delete>
       <headers>
         <header id="0">
           <name>ID</name>
         </header>
         <header id="1">
-          <name>Name</name>
+          <name>excel_file</name>
         </header>
         <header id="2">
-          <name>Amount</name>
+          <name>conversion_file</name>
         </header>
       </headers>
       <direction>asc</direction>
