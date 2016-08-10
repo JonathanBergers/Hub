@@ -2105,9 +2105,11 @@ namespace EggwiseLib
 
                                 break;
 
-                                #endregion
+                            #endregion
 
-                                #region file
+                                
+
+                            #region file
 
                             case "file":
 
@@ -2216,40 +2218,7 @@ namespace EggwiseLib
                                     }
 
                                 }
-
-
-                                if (htmlobject.Action == "browse")
-                                {
-//
-//                                    HtmlInputFile fileInput = new HtmlInputFile();
-//                                    fileInput.ID = "fileupload";
-
-                                    sectionpanel.Controls.Add(buildFileInput(htmlobject, section, true, null));
-//                                    var fileInput = new LiteralControl(Renderer.renderFileupload());
-//                                    sectionpanel.Controls.Add(fileInput);
-
-
-                                    //                                    FileUpload fu = new FileUpload();
-                                    //                                    fu.ID = "fileupload";
-                                    //                                    fu.Enabled = enabled;
-                                    //                                    
-                                    ////                                    fu.Attributes["tabindex"] = htmlobject.TabOrder.ToString();
-                                    ////                                    fu.Attributes["style"] = "opacity:0";
-                                    ////                                    fu.Width = 40;
-                                    //
-                                    //                                    HtmlAnchor butd = new HtmlAnchor();
-                                    //                                    butd.ID = "ctl" + section.ID + "_" + htmlobject.ID;
-                                    //                                    butd.Attributes["class"] += " " + htmlobject.CssClass;
-                                    //                                    butd.Controls.Add(fu);
-                                    ////                                    butd.Title = "button browse!";
-                                    //                                    butd.Attributes["class"] += " " + "browse";
-                                    //                                    sectionpanel.Controls.Add(butd);
-//                                    sectionpanel.Controls.Add(CreateHTMLObjects.CreateNewLine(1, 8));
-////                                    sectionpanel.Controls.Add(fu);
-//                                    sectionpanel.Controls.Add(new LiteralControl(Renderer.renderFileupload()));
-                                }
-                                else
-                                {
+                                
                                     //create button
 
 
@@ -2307,7 +2276,7 @@ namespace EggwiseLib
 
                                     sectionpanel.Controls.Add(button);
                                     sectionpanel.Controls.Add(CreateHTMLObjects.CreateNonBreakingSpace(1));
-                                }
+                                
                                 break;
 
                                 #endregion
@@ -2354,9 +2323,9 @@ namespace EggwiseLib
                                     buttonDiv.Style.Add("right", "24px");
 
 
-                                    HtmlGenericControl button = new HtmlGenericControl("a");
-                                    button.Attributes["class"] += " btn-floating btn-large red";
-                                    button.ID = "ctl" + section.ID + "_" + htmlobject.ID;
+                                    HtmlGenericControl linkButton = new HtmlGenericControl("a");
+                                    linkButton.Attributes["class"] += " btn-floating btn-large red";
+                                    linkButton.ID = "ctl" + section.ID + "_" + htmlobject.ID;
 
                                     HtmlGenericControl buttonIcon = new HtmlGenericControl("i");
                                     buttonIcon.Attributes["class"] += "large material-icons";
@@ -2372,17 +2341,17 @@ namespace EggwiseLib
                                     }
 
 
-                                    button.Controls.Add(buttonIcon);
-                                    buttonDiv.Controls.Add(button);
+                                    linkButton.Controls.Add(buttonIcon);
+                                    buttonDiv.Controls.Add(linkButton);
 
 
                                     if (enabled)
                                     {
-                                        button.Attributes["href"] = createHref(htmlobject);
+                                        linkButton.Attributes["href"] = createHref(htmlobject);
                                     }
                                     else
                                     {
-                                        button.Attributes["class"] += " disabled";
+                                        linkButton.Attributes["class"] += " disabled";
                                     }
 
 

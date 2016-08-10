@@ -68,20 +68,21 @@
   </section>
 
   <section id="uploadtest">
-    <htmlobject type="button" id="77">
-      <width>4</width>
+
+
+    <htmlobject type="file" id="1">
+      <width>12</width>
       <label>Browse excel</label>
-      <action>browse</action>
       <icon>library_books</icon>
     </htmlobject>
 
-    <htmlobject type="button" id="333">
-      <width>4</width>
-      <label>upload</label>
-      <action>upload</action>
+    <htmlobject type="button" id="2">
+      <width>2</width>
+      <label>Import</label>
+      <action>import</action>
     </htmlobject>
     
-    
+   
   </section>
   <section id="table_section">
 

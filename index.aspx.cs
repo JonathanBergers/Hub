@@ -453,14 +453,14 @@ public partial class index : BasePage  //System.Web.UI.Page
 
                     //set handlers
                     
-                    // upload button separate eventhandler
-                    if (htmlobject.Action == "upload")
+                    // import button separate eventhandler
+                    if (htmlobject.Action == "import")
                     {
                         HtmlAnchor linkbutton = new HtmlAnchor();
                         linkbutton = (HtmlAnchor)Page.FindControl("ctl" + section.ID + "_" + htmlobject.ID);
                         linkbutton.InnerHtml = htmlobject.Label;
                         linkbutton.Name = htmlobject.Sproc + "&" + htmlobject.Reload;
-                        linkbutton.ServerClick += new EventHandler(Btn_Click_Upload);
+                        linkbutton.ServerClick += new EventHandler(Btn_Click_Import);
                         continue;
                     }
 
@@ -3223,7 +3223,7 @@ public partial class index : BasePage  //System.Web.UI.Page
 
     }
 
-    protected void Btn_Click_Upload(object s, EventArgs e)
+    protected void Btn_Click_Import(object s, EventArgs e)
     {
 
 
