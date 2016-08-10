@@ -107,10 +107,30 @@ namespace EggwiseLib
             Type cstype = page.GetType();
             ClientScriptManager cs = page.ClientScript;
 
+            
             if (!cs.IsStartupScriptRegistered(cstype, "Alert"))
             {
                 cs.RegisterStartupScript(cstype, "Alert", script, true);
             }
+
+        }
+
+        public static void ShowNotie(string message)
+        {
+            
+            string cleanMessage = message.Replace("'", "\\'");
+            string script = "notie.alert('success', " + cleanMessage + "', 3)";
+//            string script = "alert('" + cleanMessage + "');";
+            Page page = HttpContext.Current.CurrentHandler as Page;
+            Type cstype = page.GetType();
+            ClientScriptManager cs = page.ClientScript;
+
+            if (!cs.IsStartupScriptRegistered(cstype, "Alert"))
+            {
+                cs.RegisterStartupScript(cstype, "Alert", script, true);
+            }
+
+
 
         }
     }
@@ -141,8 +161,8 @@ namespace EggwiseLib
             {
                 str = "Source:" + ex.Source;
                 str += "\n" + "Message:" + ex.Message;
-                ErHandler.errorMsg = str;
-                ErHandler.throwError();
+                MessageHandler.errorMsg = str;
+                MessageHandler.throwError();
                 return false;
             }
 
@@ -177,7 +197,7 @@ namespace EggwiseLib
    
 
 
-    public static class ErHandler
+    public static class MessageHandler
     {
 
         private static string _errorMsg = "errorMsg";
@@ -187,29 +207,29 @@ namespace EggwiseLib
 
             get
             {
-                if (HttpContext.Current.Session[ErHandler._errorMsg] == null)
+                if (HttpContext.Current.Session[MessageHandler._errorMsg] == null)
                 {
                     return string.Empty;
                 }
                 else
                 {
-                    return HttpContext.Current.Session[ErHandler._errorMsg].ToString();
+                    return HttpContext.Current.Session[MessageHandler._errorMsg].ToString();
                 }
             }
             set
             {
                 if (value == null)
                 {
-                    HttpContext.Current.Session[ErHandler._errorMsg] = "Generic Error";
+                    HttpContext.Current.Session[MessageHandler._errorMsg] = "Generic Error";
                 }
 
                 if (value != null && value != "clear")
                 {
-                    HttpContext.Current.Session[ErHandler._errorMsg] = value + "\n" + HttpContext.Current.Session[ErHandler._errorMsg];
+                    HttpContext.Current.Session[MessageHandler._errorMsg] = value + "\n" + HttpContext.Current.Session[MessageHandler._errorMsg];
                 }
                 else // ckear
                 {
-                    HttpContext.Current.Session[ErHandler._errorMsg] = string.Empty;
+                    HttpContext.Current.Session[MessageHandler._errorMsg] = string.Empty;
                 }
             }
 
@@ -223,6 +243,7 @@ namespace EggwiseLib
         public static void clearError()
         {
             errorMsg = "clear";  
+
         }
 
         public static void showError()
@@ -239,9 +260,83 @@ namespace EggwiseLib
 
             d = (HtmlGenericControl)page.FindControl("debugpanel");
 
-            d.InnerHtml = "<script>var message = '"+ error+ "'; notie.alert(3, message, 2.5);</script>";
+            d.InnerHtml = "<script>var message = `\n" + error + "\n`\nnotie.alert(3, message, 2.5);</script>";
+
+
+
+
+//            d.InnerHtml = "<script>var message = '"+ error+ "'; notie.alert(3, message, 2.5);</script>";
 //            d.InnerHtml = "<span id=\"debugpanelspan\" style=\"font-family: Arial, Helvetica, sans-serif; color: red; font-size: 10pt;\">" + 
 //            errorMsg + "</span>";
+        }
+
+
+        public static void showErrorClickToHide()
+        {
+
+            var error = errorMsg.Trim();
+
+            if (error.Length == 0)
+            {
+                return;
+            }
+            HtmlGenericControl d = new HtmlGenericControl("div");
+            Page page = (Page)HttpContext.Current.Handler;
+
+            d = (HtmlGenericControl)page.FindControl("debugpanel");
+
+            var messageScript = "<script>var message = `\n" + error + "\n`\nnotie.alert(3, message);</script>";
+            d.InnerHtml = "<script>var message = `\n" + error + "\n`\nnotie.alert(3, message);</script>";
+            //            d.InnerHtml = "<span id=\"debugpanelspan\" style=\"font-family: Arial, Helvetica, sans-serif; color: red; font-size: 10pt;\">" + 
+            //            errorMsg + "</span>";
+        }
+
+        public static void showSuccess(string message)
+        {
+
+            message = message.Trim();
+
+            if (message.Length == 0)
+            {
+                return;
+            }
+            HtmlGenericControl d = new HtmlGenericControl("div");
+            Page page = (Page)HttpContext.Current.Handler;
+
+            d = (HtmlGenericControl)page.FindControl("debugpanel");
+            
+
+
+            d.InnerHtml = "<script>var message = `\n" + message + "\n`\nnotie.alert(1, message, 2.5); +\n" + "</script>";
+
+
+           
+
+
+        }
+
+
+        public static void showSuccessImport()
+        {
+
+
+//            var script = @"<script>
+////    notie.confirm('Import succesfull!', 'See results', 'Stay here', function() {
+////        window.location.reload(true);
+////    });
+////    </script>";
+//
+//            HtmlGenericControl d = new HtmlGenericControl("div");
+//            Page page = (Page)HttpContext.Current.Handler;
+//
+//            d = (HtmlGenericControl)page.FindControl("debugpanel");
+//
+//
+//
+//            d.InnerHtml = script;
+
+
+
         }
 
     }

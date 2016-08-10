@@ -50,22 +50,22 @@ namespace EggwiseLib
                 str += "\n" + "Message:" + ex.Message;
                 str += "\n" + "\n";
                 str += "\n" + "Stack Trace :" + ex.StackTrace;
-                ErHandler.errorMsg = str;
-                ErHandler.throwError();
+                MessageHandler.errorMsg = str;
+                MessageHandler.throwError();
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
                 str = "Source:" + ex.Source;
                 str += "\n" + "Message:" + ex.Message;
-                ErHandler.errorMsg = str;
-                ErHandler.throwError();
+                MessageHandler.errorMsg = str;
+                MessageHandler.throwError();
             }
             catch (System.Exception ex)
             {
                 str = "Source:" + ex.Source;
                 str += "\n" + "Message:" + ex.Message;
-                ErHandler.errorMsg = str;
-                ErHandler.throwError();
+                MessageHandler.errorMsg = str;
+                MessageHandler.throwError();
             }
 
             return dt;
@@ -208,28 +208,53 @@ namespace EggwiseLib
                 str += "\n" + "Message:" + ex.Message;
                 str += "\n" + "\n";
                 str += "\n" + "Stack Trace :" + ex.StackTrace;
-                ErHandler.errorMsg = str;
-                ErHandler.throwError();
+                MessageHandler.errorMsg = str;
+                MessageHandler.throwError();
                 return false;
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
                 str = "Source:" + ex.Source;
                 str += "\n" + "Message:" + ex.Message;
-                ErHandler.errorMsg = str;
-                ErHandler.throwError();
+                MessageHandler.errorMsg = str;
+                MessageHandler.throwError();
                 return false;
             }
             catch (System.Exception ex)
             {
                 str = "Source:" + ex.Source;
                 str += "\n" + "Message:" + ex.Message;
-                ErHandler.errorMsg = str;
-                ErHandler.throwError();
+                MessageHandler.errorMsg = str;
+                MessageHandler.throwError();
                 return false;
             }
 
         }
+
+
+        public bool UpdateUnsafe(string sql)
+        {
+            // debug
+            Debug.Print(sql);
+
+            string str = string.Empty;
+           
+                SqlConnection conn = new SqlConnection(sConnectionString);
+
+                using (conn)
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Prepare();
+                    cmd.CommandTimeout = 600; // 10 minutes
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    return true;
+                }
+          
+
+        }
+
     }
 
 }

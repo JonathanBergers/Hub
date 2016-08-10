@@ -344,8 +344,8 @@ namespace EggwiseLib
             }
             catch (System.Exception ex)
             {
-                ErHandler.errorMsg = "Source:" + ex.Source + "\n" + "Message:" + ex.Message;
-                ErHandler.throwError();
+                MessageHandler.errorMsg = "Source:" + ex.Source + "\n" + "Message:" + ex.Message;
+                MessageHandler.throwError();
             }
         }
     }

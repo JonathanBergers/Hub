@@ -36,8 +36,8 @@ namespace EggwiseLib
 //
 //                if (SessionHandler.Usr.Roles == null)
 //                {
-//                    ErHandler.errorMsg = "Session has expired!";
-//                    ErHandler.throwError();
+//                    MessageHandler.errorMsg = "Session has expired!";
+//                    MessageHandler.throwError();
 //                }
 //
 //                foreach (string role in  SessionHandler.Usr.Roles)
@@ -170,8 +170,8 @@ namespace EggwiseLib
 
                 if (SessionHandler.Usr.Roles == null)
                 {
-                    ErHandler.errorMsg = "Session has expired!";
-                    ErHandler.throwError();
+                    MessageHandler.errorMsg = "Session has expired!";
+                    MessageHandler.throwError();
                 }
 
                 foreach (string role in  SessionHandler.Usr.Roles)
@@ -220,8 +220,8 @@ namespace EggwiseLib
 //
 //                if (SessionHandler.Usr.Roles == null)
 //                {
-//                    ErHandler.errorMsg = "Session has expired!";
-//                    ErHandler.throwError();
+//                    MessageHandler.errorMsg = "Session has expired!";
+//                    MessageHandler.throwError();
 //                }
 //
 //                foreach (string role in  SessionHandler.Usr.Roles)
@@ -369,8 +369,8 @@ namespace EggwiseLib
 
                 if (SessionHandler.Usr.Roles == null)
                 {
-                    ErHandler.errorMsg = "Session has expired!";
-                    ErHandler.throwError();
+                    MessageHandler.errorMsg = "Session has expired!";
+                    MessageHandler.throwError();
                 }
 
                 foreach (string role in  SessionHandler.Usr.Roles)

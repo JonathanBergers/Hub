@@ -23,6 +23,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using Excel;
 
 public partial class index : BasePage  //System.Web.UI.Page
@@ -95,22 +96,22 @@ public partial class index : BasePage  //System.Web.UI.Page
         {
 
             //reset error msg
-            ErHandler.clearError();
+            MessageHandler.clearError();
         }
         else
         {
             // Alert
-            if (ErHandler.errorMsg != "")
+            if (MessageHandler.errorMsg != "")
             {
-                Alert.Show(ErHandler.errorMsg.Replace("\n", ""));
+                Alert.Show(MessageHandler.errorMsg.Replace("\n", ""));
                 //reset error msg
-                ErHandler.clearError();
+                MessageHandler.clearError();
             }
         }
 
         if (Request.QueryString["confirm"] == "yes")
         {
-            ErHandler.errorMsg = "Are you sure you want to delete this item?";
+            MessageHandler.errorMsg = "Are you sure you want to delete this item?";
         }
 
 
@@ -283,7 +284,7 @@ public partial class index : BasePage  //System.Web.UI.Page
                 }
 
                 //doc.Load(configFile);
-                ErHandler.errorMsg = ValidateXML.ValidatingXML(configFile, xsdFile);
+                MessageHandler.errorMsg = ValidateXML.ValidatingXML(configFile, xsdFile);
                 SessionHandler.propFile = doc;
             }
             else
@@ -304,7 +305,7 @@ public partial class index : BasePage  //System.Web.UI.Page
         catch
         {
             SessionHandler.Qstring.Pageform = "main";
-            ErHandler.errorMsg = "Cannot load XML file. Module not configured correctly yet.";
+            MessageHandler.errorMsg = "Cannot load XML file. Module not configured correctly yet.";
         }
 
         # endregion
@@ -413,7 +414,7 @@ public partial class index : BasePage  //System.Web.UI.Page
 
                         if (SessionHandler.Usr.Create)
                         {
-                            string[] createActions = { "insert", "file", "copy", "execute", "mail", "file", "browse", "upload" };
+                            string[] createActions = { "insert", "file", "copy", "execute", "mail", "file", "browse", "import" };
                             if (createActions.Contains(htmlobject.Action))
                             {
                                 enabled = true;
@@ -527,8 +528,8 @@ public partial class index : BasePage  //System.Web.UI.Page
         }
         catch (System.Exception ex)
         {
-            ErHandler.errorMsg = "Source:" + ex.Source + "\n" + "Message:" + ex.Message;
-            ErHandler.throwError();
+            MessageHandler.errorMsg = "Source:" + ex.Source + "\n" + "Message:" + ex.Message;
+            MessageHandler.throwError();
         }
 
         #endregion
@@ -623,7 +624,7 @@ public partial class index : BasePage  //System.Web.UI.Page
         dp.ID = "debugpanel";
         cont.Controls.Add(dp);
         cont.Controls.Add(CreateHTMLObjects.CreateNewLine(1, 8));
-        ErHandler.showError();
+        MessageHandler.showError();
 
         # endregion
 
@@ -700,6 +701,10 @@ public partial class index : BasePage  //System.Web.UI.Page
 
         }
         #endregion
+
+
+        
+
 
         if (!IsPostBack)
         {
@@ -782,8 +787,8 @@ public partial class index : BasePage  //System.Web.UI.Page
                 // extra security to avoid messing with querystring
                 if (dt.Rows.Count == 0)
                 {
-                    ErHandler.errorMsg = "Invalid request!";
-                    ErHandler.throwError();
+                    MessageHandler.errorMsg = "Invalid request!";
+                    MessageHandler.throwError();
                 }
 
                 int i = 0;
@@ -1051,8 +1056,8 @@ public partial class index : BasePage  //System.Web.UI.Page
         if (string.IsNullOrEmpty(format))
         {
             Debug.WriteLine("button export no format defined ");
-            ErHandler.errorMsg ="no export format defined";
-            ErHandler.showError();
+            MessageHandler.errorMsg ="no export format defined";
+            MessageHandler.showError();
             return;
 
         }
@@ -1074,8 +1079,8 @@ public partial class index : BasePage  //System.Web.UI.Page
 
         if (!exportResult.isSuccess())
         {
-            ErHandler.errorMsg = "could not export to " + format;
-            ErHandler.showError();
+            MessageHandler.errorMsg = "could not export to " + format;
+            MessageHandler.showError();
             return;
             //TODO error handling
 
@@ -1291,8 +1296,8 @@ public partial class index : BasePage  //System.Web.UI.Page
         }
         #endregion
 
-        ErHandler.errorMsg = message;
-        ErHandler.showError();
+        MessageHandler.errorMsg = message;
+        MessageHandler.showError();
         Alert.Show(message);
        
         if (reload == "yes")
@@ -1331,9 +1336,13 @@ public partial class index : BasePage  //System.Web.UI.Page
         int test;
         #endregion
 
+
         pageform.Load(doc);
         Debug.WriteLine("button clicked: " + linkbutton);
         Debug.WriteLine("button clicked name: " + linkbutton.Name);
+
+        
+
         switch (linkbutton.Name)
         {
 
@@ -2789,8 +2798,8 @@ public partial class index : BasePage  //System.Web.UI.Page
                             }
                             #endregion
 
-                            ErHandler.errorMsg = "File is saved to " + filepath + file;
-                            ErHandler.showError();
+                            MessageHandler.errorMsg = "File is saved to " + filepath + file;
+                            MessageHandler.showError();
                         }
                         else
                         {
@@ -3074,7 +3083,10 @@ public partial class index : BasePage  //System.Web.UI.Page
     {
 
 
+
         DataTable dTable = readDataTableFromExcel(excelFile);
+
+
         return mapDatatableToSQL(dTable, excelFile.fileName);
     }
 
@@ -3223,15 +3235,35 @@ public partial class index : BasePage  //System.Web.UI.Page
 
     }
 
+
+
+
+
+    protected void OnImportSuccess()
+    {
+        //
+        //        MessageHandler.showSuccess("Import succeeded!", true);
+
+        MessageHandler.showSuccess("Import successfull!");
+        MessageHandler.clearError();
+
+   
+        
+
+    }
+
     protected void Btn_Click_Import(object s, EventArgs e)
     {
 
+        Debug.WriteLine("import button clicked");
 
         //TODO error handling if file upload failed
         //TODO catch exceptions and display to user
       
         try
         {
+
+
             var fileStruct = uploadFile();
             
             var convertResult = convertExcelToSQL(fileStruct);
@@ -3246,7 +3278,20 @@ public partial class index : BasePage  //System.Web.UI.Page
             {
                 //TODO preload error handling ?
                 Debug.WriteLine("PRELOAD QUERY: " + preloadQuery);
-                connectionString.Update(preloadQuery);
+                try
+                {
+                    connectionString.UpdateUnsafe(preloadQuery);
+                }
+                catch (Exception exx)
+                {
+                    string errormessage = "Error when executing preload query: errormessage: " + exx.Message;
+                    Debug.WriteLine(errormessage);
+                    MessageHandler.errorMsg = errormessage;
+                    
+                    MessageHandler.showErrorClickToHide();
+                    return;
+                }
+                
 
             }
         
@@ -3254,17 +3299,48 @@ public partial class index : BasePage  //System.Web.UI.Page
             foreach (var query in queries)
             {
 
-                Debug.WriteLine("EXCELCONVERT QUERY:  " + query);
-                connectionString.Update(query);
+                //TODO error handling 
+
+
+                try
+                {
+
+                 Debug.WriteLine("EXCELCONVERT QUERY:  " + query);
+                                connectionString.UpdateUnsafe(query);
+                }
+
+                catch (Exception exc)
+                {
+                    string errormessage = "Error writing to table: \nErrormessage: " + exc.Message + "\nQuery used: " + query;
+                    Debug.WriteLine(errormessage);
+                    MessageHandler.errorMsg = errormessage;
+
+                    MessageHandler.showErrorClickToHide();
+                    return;
+
+                }
+               
+
+
             }
+
+
+            Debug.WriteLine("IMPORT WORKED");
+            //TODO it worked, tell the user
+    
+               OnImportSuccess();
+ 
+
+//            Alert.ShowNotie("Import succeeded!");
+
             return;
 
         }
         catch (Exception ex)
         {
 
-            ErHandler.errorMsg = ex.Message;
-            ErHandler.showError();
+            MessageHandler.errorMsg = ex.Message;
+            MessageHandler.showError();
             return;
         }
        
@@ -3443,8 +3519,8 @@ public partial class index : BasePage  //System.Web.UI.Page
                                             Alert.Show("File successfully uploaded.");
                                         }
 
-                                        ErHandler.errorMsg = "File successfully uploaded.";
-                                        ErHandler.showError();
+                                        MessageHandler.errorMsg = "File successfully uploaded.";
+                                        MessageHandler.showError();
      
                                     }
                                     else
@@ -3467,21 +3543,21 @@ public partial class index : BasePage  //System.Web.UI.Page
                         catch (CustomException ex)
                         {
                             Alert.Show(ex.Message);
-                            ErHandler.errorMsg = ex.Message;
-                            ErHandler.showError();
+                            MessageHandler.errorMsg = ex.Message;
+                            MessageHandler.showError();
                         }
 
                         catch (System.InvalidOperationException ex)
                         {
                             Alert.Show(ex.Message);
-                            ErHandler.errorMsg = ex.Message;
-                            ErHandler.showError();
+                            MessageHandler.errorMsg = ex.Message;
+                            MessageHandler.showError();
                         }
                         catch (System.Exception ex)
                         {
                             Alert.Show(ex.Message);
-                            ErHandler.errorMsg = ex.Message;
-                            ErHandler.showError();
+                            MessageHandler.errorMsg = ex.Message;
+                            MessageHandler.showError();
                         }
                     }
                 }

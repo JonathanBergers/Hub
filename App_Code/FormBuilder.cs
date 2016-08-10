@@ -215,8 +215,8 @@ namespace EggwiseLib
         {
             if (SessionHandler.Usr.Roles == null)
             {
-                ErHandler.errorMsg = "Session has expired!";
-                ErHandler.throwError();
+                MessageHandler.errorMsg = "Session has expired!";
+                MessageHandler.throwError();
             }
 
 
@@ -2192,7 +2192,7 @@ namespace EggwiseLib
                                     if ((htmlobject.Action == "insert" || htmlobject.Action == "file" ||
                                          htmlobject.Action == "copy" || htmlobject.Action == "execute" ||
                                          htmlobject.Action == "mail" || htmlobject.Action == "browse" ||
-                                         htmlobject.Action == "upload") && SessionHandler.Usr.Create)
+                                         htmlobject.Action == "import") && SessionHandler.Usr.Create)
                                     {
                                         enabled = true;
                                     }
@@ -2554,8 +2554,8 @@ namespace EggwiseLib
             {
                 str = "Source:" + ex.Source;
                 str += "\n" + "Message:" + ex.Message;
-                ErHandler.errorMsg = str;
-                ErHandler.throwError();
+                MessageHandler.errorMsg = str;
+                MessageHandler.throwError();
             }
 
 

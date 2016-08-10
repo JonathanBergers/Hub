@@ -80,13 +80,13 @@ public partial class _Default : BasePage  //System.Web.UI.Page
 
 //        h.InnerHtml = "<h1>Error:</h1>";
 
-        if (ErHandler.errorMsg == string.Empty)
+        if (MessageHandler.errorMsg == string.Empty)
         {
 //            h.InnerHtml = "Generic error";
         }
         else
         {
-            h.InnerHtml = "Error occured: " +  ErHandler.errorMsg;
+            h.InnerHtml = "Error occured: " +  MessageHandler.errorMsg;
         }
 
         #endregion
@@ -112,7 +112,7 @@ public partial class _Default : BasePage  //System.Web.UI.Page
             sblog.Append("','");
             sblog.Append(SessionHandler.Qstring.Pageform);
             sblog.Append("','");
-            sblog.Append(ErHandler.errorMsg.Replace(",", ";").Replace("'", "''").Replace("\n", " "));
+            sblog.Append(MessageHandler.errorMsg.Replace(",", ";").Replace("'", "''").Replace("\n", " "));
             sblog.Append("','");
             sblog.Append(System.DateTime.Now);
             sblog.Append("')");
@@ -125,7 +125,7 @@ public partial class _Default : BasePage  //System.Web.UI.Page
     protected void btnErrorOK_Click(object sender, EventArgs e)
     {
         // go back to main page
-        ErHandler.clearError();
+        MessageHandler.clearError();
 
         if (SessionHandler.referrer.Length > 0)
         {
