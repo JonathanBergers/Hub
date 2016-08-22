@@ -19,3 +19,15 @@
   border: none
 
 }
+
+
+td, th {
+    padding: 5px 5px;
+
+
+}
+
+input[inputbox-table]{
+
+height: auto;
+}

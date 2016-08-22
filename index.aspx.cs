@@ -3050,24 +3050,34 @@ public partial class index : BasePage  //System.Web.UI.Page
     {
 
 
-     
 
-        FileStream stream = File.Open(file.location, FileMode.Open, FileAccess.Read);
-        //1. Reading from a binary Excel file ('97-2003 format; *.xls)
+        try
+        {
+            FileStream stream = File.Open(file.location, FileMode.Open, FileAccess.Read);
+            //1. Reading from a binary Excel file ('97-2003 format; *.xls)
 //        IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
 
-        //2. Reading from a OpenXml Excel file (2007 format; *.xlsx)
-        IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-        excelReader.IsFirstRowAsColumnNames = true;
-        DataSet result = excelReader.AsDataSet();
+            //2. Reading from a OpenXml Excel file (2007 format; *.xlsx)
+            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+            excelReader.IsFirstRowAsColumnNames = true;
+            DataSet result = excelReader.AsDataSet();
 
-        //error handling when file is empty? no tables are found ?
-        // get table
+            //error handling when file is empty? no tables are found ?
+            // get table
 
-        var table = result.Tables[0];
+            var table = result.Tables[0];
 
-        return table;
+            return table;
 
+
+
+        }
+        catch (Exception e)
+        {
+
+            throw new Exception("Error when reading excel file: " + e.Message);
+        }
+        
 
 
 
@@ -3128,9 +3138,7 @@ public partial class index : BasePage  //System.Web.UI.Page
             preloadQuery = preloadQuery.Replace("@department", "'" + SessionHandler.Usr.Department + "'");
             preloadQuery = preloadQuery.Replace("@file", "'" + fileName + "'");
 
-            //TODO here implement conversion/tion ID of the object
-            //                                                pl = pl.Replace("@conversion", "'" + parameter.Value + "'");
-
+     
 
         }
         else
@@ -3207,13 +3215,8 @@ public partial class index : BasePage  //System.Web.UI.Page
                 else
                 {
                     string dv = col.DefValue;
-                    dv = dv.Replace("@user", SessionHandler.Usr.User);
-                    dv = dv.Replace("@module", SessionHandler.Qstring.Pageform);
-                    dv = dv.Replace("@filter", SessionHandler.Qstring.Filter.Split('|')[0]);
-                    dv = dv.Replace("@role", SessionHandler.accesslevel);
-                    dv = dv.Replace("@department", SessionHandler.Usr.Department);
-//                    dv = dv.Replace("@file", parameter.Value);
-                    values.Append("'" + dv + "',");
+        
+                    values.Append("'" + addContextWildcard(dv, fileName) + "',");
                 }
             }
 
@@ -3221,6 +3224,7 @@ public partial class index : BasePage  //System.Web.UI.Page
             sql = fields.ToString().TrimEnd(',');
             sql = sql + ") values (" + values.ToString().TrimEnd(',') + ");";
 
+            sql = addContextWildcard(sql, fileName);
             queries[rowNumber] = sql;
             // write to database
 //            cs.Update(sql);
@@ -3237,7 +3241,17 @@ public partial class index : BasePage  //System.Web.UI.Page
 
 
 
+    private string addContextWildcard(string query, string fileName)
+    {
 
+        query = query.Replace("@user", SessionHandler.Usr.User );
+        query = query.Replace("@module", SessionHandler.Qstring.Pageform);
+        query = query.Replace("@filter",  SessionHandler.Qstring.Filter.Split('|')[0]);
+        query = query.Replace("@role", SessionHandler.accesslevel);
+        query = query.Replace("@department",SessionHandler.Usr.Department);
+        query = query.Replace("@file", fileName);
+        return query;
+    }
 
     protected void OnImportSuccess()
     {
